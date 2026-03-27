@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O2SN Kecamatan Cigombong 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Nunito',sans-serif;background:#060f23;color:#fff;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#0d1b35}::-webkit-scrollbar-thumb{background:#3b82f6;border-radius:3px}
+/* Animated BG */
+.bg-main{background:linear-gradient(135deg,#060f23 0%,#0d1b35 40%,#0a1628 100%);min-height:100vh;position:relative}
+.bg-main::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 15% 15%,rgba(59,130,246,.18) 0%,transparent 55%),radial-gradient(ellipse at 85% 85%,rgba(139,92,246,.12) 0%,transparent 55%),radial-gradient(ellipse at 50% 50%,rgba(16,185,129,.06) 0%,transparent 70%);pointer-events:none;z-index:0;animation:bgPulse 10s ease-in-out infinite}
+@keyframes bgPulse{0%,100%{opacity:1}50%{opacity:.7}}
+#stars-wrap{position:fixed;inset:0;z-index:0;pointer-events:none}
+#app{position:relative;z-index:1;min-height:100vh}
+/* Glass */
+.glass{background:rgba(255,255,255,.07);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);border-radius:20px}
+.glass-dark{background:rgba(0,0,0,.3);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:20px}
+.glass-blue{background:rgba(59,130,246,.12);backdrop-filter:blur(20px);border:1px solid rgba(59,130,246,.25);border-radius:20px}
+/* Buttons */
+.btn{border:none;border-radius:10px;padding:10px 22px;font-weight:700;cursor:pointer;transition:all .25s;font-family:'Nunito',sans-serif;display:inline-flex;align-items:center;gap:7px;font-size:.88rem}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none!important}
+.btn-blue{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;box-shadow:0 4px 15px rgba(59,130,246,.4)}
+.btn-blue:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(59,130,246,.5)}
+.btn-green{background:linear-gradient(135deg,#10b981,#059669);color:#fff;box-shadow:0 4px 15px rgba(16,185,129,.4)}
+.btn-green:hover{transform:translateY(-2px)}
+.btn-red{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;box-shadow:0 4px 15px rgba(239,68,68,.4)}
+.btn-red:hover{transform:translateY(-2px)}
+.btn-yellow{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;box-shadow:0 4px 15px rgba(245,158,11,.4)}
+.btn-yellow:hover{transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.14)}
+.btn-sm{padding:6px 12px;font-size:.75rem;border-radius:8px}
+/* Forms */
+.form-input{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.2);color:#fff;border-radius:10px;padding:10px 14px;width:100%;transition:all .3s;font-family:'Nunito',sans-serif;font-size:.9rem}
+.form-input:focus{outline:none;border-color:#3b82f6;background:rgba(59,130,246,.15);box-shadow:0 0 0 3px rgba(59,130,246,.2)}
+.form-input::placeholder{color:rgba(255,255,255,.35)}
+.form-input option{background:#1a2f5e;color:#fff}
+.form-label{color:rgba(255,255,255,.85);font-size:.82rem;font-weight:700;margin-bottom:5px;display:block}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);z-index:1000;display:flex;align-items:flex-start;justify-content:center;padding:16px;overflow-y:auto;animation:fadeIn .2s ease}
+.modal-box{background:linear-gradient(135deg,#1a2f5e,#0d1f3c);border:1px solid rgba(59,130,246,.3);border-radius:24px;animation:slideUp .3s ease;width:100%;box-shadow:0 40px 80px rgba(0,0,0,.5);margin:auto}
+.modal-box::-webkit-scrollbar{width:4px}
+.modal-box::-webkit-scrollbar-thumb{background:rgba(59,130,246,.5);border-radius:2px}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+/* Toast */
+.toast-wrap{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px}
+.toast{background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:14px 20px;border-radius:14px;font-weight:700;animation:slideInR .3s ease;box-shadow:0 10px 30px rgba(16,185,129,.4);max-width:320px;display:flex;align-items:center;gap:10px}
+.toast.error{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 10px 30px rgba(239,68,68,.4)}
+.toast.info{background:linear-gradient(135deg,#3b82f6,#2563eb);box-shadow:0 10px 30px rgba(59,130,246,.4)}
+.toast.warning{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 10px 30px rgba(245,158,11,.4)}
+@keyframes slideInR{from{transform:translateX(110%);opacity:0}to{transform:translateX(0);opacity:1}}
+/* Nav */
+.navbar{background:rgba(6,15,35,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(59,130,246,.2);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+/* Cards */
+.sport-card{background:linear-gradient(135deg,rgba(255,255,255,.09),rgba(255,255,255,.04));border:2px solid transparent;border-radius:16px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.sport-card:hover{transform:translateY(-4px) scale(1.02);border-color:rgba(59,130,246,.6);box-shadow:0 20px 40px rgba(59,130,246,.3)}
+.sport-card.selected{border-color:#3b82f6;background:linear-gradient(135deg,rgba(59,130,246,.3),rgba(139,92,246,.2));box-shadow:0 0 20px rgba(59,130,246,.4)}
+.stat-card{background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;transition:all .3s}
+.stat-card:hover{transform:translateY(-3px);border-color:rgba(59,130,246,.4);box-shadow:0 12px 30px rgba(0,0,0,.3)}
+/* Table */
+.data-table{width:100%;border-collapse:collapse}
+.data-table th{background:rgba(59,130,246,.2);color:#93c5fd;padding:10px 14px;text-align:left;font-size:.78rem;font-weight:700;white-space:nowrap}
+.data-table td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.05);font-size:.8rem;vertical-align:middle}
+.data-table tr:hover td{background:rgba(255,255,255,.03)}
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:.7rem;font-weight:700}
+.badge-green{background:rgba(16,185,129,.2);color:#34d399;border:1px solid rgba(16,185,129,.3)}
+.badge-yellow{background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.3)}
+.badge-blue{background:rgba(59,130,246,.2);color:#93c5fd;border:1px solid rgba(59,130,246,.3)}
+.badge-red{background:rgba(239,68,68,.2);color:#f87171;border:1px solid rgba(239,68,68,.3)}
+/* Upload */
+.upload-zone{border:2px dashed rgba(59,130,246,.4);border-radius:12px;padding:14px 16px;cursor:pointer;transition:all .3s;background:rgba(59,130,246,.05);display:flex;align-items:center;gap:10px;min-height:52px}
+.upload-zone:hover{border-color:#3b82f6;background:rgba(59,130,246,.15)}
+.file-thumb{width:100%;height:80px;background:rgba(255,255,255,.05);border:1px solid rgba(59,130,246,.3);border-radius:10px;overflow:hidden;position:relative;margin-top:6px}
+.file-thumb img{width:100%;height:100%;object-fit:cover}
+.file-thumb .overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;gap:6px;opacity:0;transition:.2s}
+.file-thumb:hover .overlay{opacity:1}
+.file-action-btn{background:rgba(59,130,246,.85);border:none;color:#fff;cursor:pointer;width:30px;height:30px;display:flex;align-items:center;justify-content:center;border-radius:6px;transition:.2s}
+.file-action-btn:hover{transform:scale(1.12)}
+.file-action-btn.del{background:rgba(239,68,68,.85)}
+/* Sidebar admin */
+.admin-sidebar{width:240px;flex-shrink:0;background:linear-gradient(180deg,rgba(26,47,94,.85),rgba(13,31,71,.85));backdrop-filter:blur(20px);border-right:1px solid rgba(139,92,246,.2);display:flex;flex-direction:column;overflow-y:auto}
+.sidebar-btn{display:flex;align-items:center;gap:11px;width:100%;padding:12px 16px;margin-bottom:4px;border-radius:12px;border:none;background:transparent;color:rgba(255,255,255,.55);cursor:pointer;font-weight:700;font-size:.88rem;transition:all .25s;border-left:3px solid transparent;text-align:left}
+.sidebar-btn:hover{background:rgba(139,92,246,.15);color:#c4b5fd;border-left-color:#c4b5fd}
+.sidebar-btn.active{background:rgba(139,92,246,.3);color:#a78bfa;border-left-color:#8b5cf6}
+/* Animations */
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(180deg)}}
+@keyframes twinkle{0%,100%{opacity:.2;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
+.section-title{font-family:'Poppins',sans-serif;font-weight:900;background:linear-gradient(135deg,#60a5fa,#a78bfa,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+/* Progress bar */
+.progress-bar{height:6px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#8b5cf6);border-radius:3px;transition:width .5s ease}
+/* Info board */
+.info-board{background:linear-gradient(135deg,rgba(245,158,11,.18),rgba(217,119,6,.1));border:1px solid rgba(245,158,11,.4);border-radius:16px;padding:20px;animation:slideUp .5s ease}
+/* Gender btn */
+.gender-btn{padding:10px 20px;border-radius:8px;border:2px solid rgba(255,255,255,.2);cursor:pointer;font-weight:700;transition:all .3s;background:transparent;color:rgba(255,255,255,.55);font-family:'Nunito',sans-serif;font-size:.9rem}
+.gender-btn.active{background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-color:#3b82f6;color:#fff;box-shadow:0 4px 12px rgba(59,130,246,.3)}
+/* Print */
+@media print{
+  #print-target{display:block!important}
+  body > *:not(#print-target){display:none!important}
+  #print-target{position:fixed;inset:0;background:#fff;z-index:99999;padding:0}
+}
+</style>
+</head>
+<body class="bg-main">
+<div id="stars-wrap"></div>
+<div id="app"></div>
+<div class="toast-wrap" id="toast-wrap"></div>
+<div id="print-target" style="display:none"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// LOCAL STORAGE DB
+// ═══════════════════════════════════════════════════════
+let _db = [];
+try { _db = JSON.parse(localStorage.getItem('o2sn_db') || '[]'); } catch(e){ _db=[]; }
+function _saveDb(){ try{ localStorage.setItem('o2sn_db', JSON.stringify(_db)); }catch(e){} }
+
+const dataSdk = {
+  _handler: null,
+  init(handler){ this._handler=handler; handler.onDataChanged(_db.slice()); return {isOk:true}; },
+  _notify(){ if(this._handler) this._handler.onDataChanged(_db.slice()); },
+  async create(data){ const rec={...data,__backendId:'id_'+Date.now()+'_'+Math.random().toString(36).substr(2,5)}; _db.push(rec); _saveDb(); this._notify(); return {isOk:true,data:rec}; },
+  async update(data){ const i=_db.findIndex(r=>r.__backendId===data.__backendId); if(i<0)return{isOk:false}; _db[i]={...data}; _saveDb(); this._notify(); return{isOk:true,data:_db[i]}; },
+  async delete(data){ const i=_db.findIndex(r=>r.__backendId===data.__backendId); if(i<0)return{isOk:false}; _db.splice(i,1); _saveDb(); this._notify(); return{isOk:true}; }
+};
+
+let _cfg = {};
+try{ _cfg=JSON.parse(localStorage.getItem('o2sn_cfg')||'{}'); }catch(e){}
+const elementSdk = {
+  getConfig(){ return _cfg; },
+  async setConfig(patch){ _cfg={..._cfg,...patch}; localStorage.setItem('o2sn_cfg',JSON.stringify(_cfg)); return {isOk:true}; }
+};
+
+// ═══════════════════════════════════════════════════════
+// APP STATE
+// ═══════════════════════════════════════════════════════
+const APP = {
+  currentUser: null, currentPage: 'home',
+  allRecords:[], schools:[], students:[],
+  config: {
+    event_year:'2026', ketua_panitia:'H. Ahmad Subagja, S.Pd., M.M.',
+    nip_ketua:'196804121990031005', informasi_penting:'',
+    logo_url: '', ..._cfg
+  }
+};
+let adminPassword = 'admin123';
+
+const SPORTS = {
+  'Kids Athletics':  {emoji:'🏃',color:'#f59e0b',desc:'Lari, Lempar, Lompat'},
+  'Renang':          {emoji:'🏊',color:'#0ea5e9',desc:'Gaya Bebas & Gaya Dada'},
+  'Bulutangkis':     {emoji:'🏸',color:'#10b981',desc:'Tunggal & Ganda'},
+  'Pencak Silat':    {emoji:'🥋',color:'#8b5cf6',desc:'Seni & Tanding'},
+  'Senam':           {emoji:'🤸',color:'#ec4899',desc:'Artistik & Ritmik'}
+};
+const RELIGIONS = ['Islam','Kristen','Katolik','Hindu','Budha','Konghucu'];
+const GRADES = ['1','2','3','4','5','6'];
+const tempFiles = {};
+
+// Data handler
+const dataHandler = {
+  onDataChanged(data){
+    APP.allRecords = data;
+    APP.schools   = data.filter(r=>r.type==='school');
+    APP.students  = data.filter(r=>r.type==='student');
+    const pw = data.find(r=>r.type==='admin_config');
+    if(pw) adminPassword = pw.admin_password || adminPassword;
+    // sync config from db
+    const cfg = data.find(r=>r.type==='app_config');
+    if(cfg){ Object.assign(APP.config, cfg); }
+    refreshCurrentView();
+  }
+};
+dataSdk.init(dataHandler);
+
+// ═══════════════════════════════════════════════════════
+// STARS
+// ═══════════════════════════════════════════════════════
+(function createStars(){
+  const c=document.getElementById('stars-wrap');
+  for(let i=0;i<90;i++){
+    const s=document.createElement('div');
+    const sz=Math.random()*3+1;
+    s.style.cssText=`position:absolute;border-radius:50%;width:${sz}px;height:${sz}px;background:white;top:${Math.random()*100}%;left:${Math.random()*100}%;animation:twinkle ${2+Math.random()*4}s ease-in-out infinite;animation-delay:${Math.random()*4}s;opacity:${.1+Math.random()*.6}`;
+    c.appendChild(s);
+  }
+})();
+
+// ═══════════════════════════════════════════════════════
+// TOAST
+// ═══════════════════════════════════════════════════════
+function showToast(msg, type='success', duration=3500){
+  const wrap = document.getElementById('toast-wrap');
+  const t = document.createElement('div');
+  t.className = `toast ${type!=='success'?type:''}`;
+  const icon = {success:'✅',error:'❌',info:'ℹ️',warning:'⚠️'}[type]||'✅';
+  t.innerHTML = `<span style="font-size:1.2rem">${icon}</span><span>${msg}</span>`;
+  wrap.appendChild(t);
+  setTimeout(()=>{ t.style.animation='slideInR .3s ease reverse'; setTimeout(()=>t.remove(),300); }, duration);
+}
+
+// ═══════════════════════════════════════════════════════
+// UTILS
+// ═══════════════════════════════════════════════════════
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmtDate(iso){ if(!iso)return'-'; const d=new Date(iso); return d.toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'})+' '+d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'}); }
+function fmtDateShort(iso){ if(!iso)return'-'; return new Date(iso).toLocaleDateString('id-ID',{day:'2-digit',month:'2-digit',year:'numeric'}); }
+function genCode(){ return 'O2SN-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).substr(2,5).toUpperCase(); }
+function closeModal(id){ const el=document.getElementById(id); if(el){ el.style.animation='fadeOut .2s ease'; setTimeout(()=>el.parentNode&&el.parentNode.removeChild(el),200); } }
+function refreshCurrentView(){
+  const p=APP.currentPage;
+  if(p==='home')renderHome();
+  else if(p==='admin')renderAdmin();
+  else if(p==='coordinator')renderCoordinator();
+}
+
+// ═══════════════════════════════════════════════════════
+// HOME
+// ═══════════════════════════════════════════════════════
+function renderHome(){
+  APP.currentPage='home';
+  const yr = APP.config.event_year||'2026';
+  const info = APP.config.informasi_penting||'';
+  const logoUrl = APP.config.logo_url||'';
+  const app = document.getElementById('app');
+  app.innerHTML = `
+  <div style="min-height:100vh;display:flex;flex-direction:column">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        ${logoUrl
+          ? `<img src="${logoUrl}" style="width:44px;height:44px;object-fit:contain;border-radius:10px;background:#fff;padding:2px">`
+          : `<div style="width:44px;height:44px;background:linear-gradient(135deg,#3b82f6,#8b5cf6);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem">🏆</div>`}
+        <div>
+          <div style="font-family:'Poppins';font-weight:800;font-size:1rem;background:linear-gradient(135deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent">O2SN ${yr}</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.5)">Kec. Cigombong · Kab. Bogor</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-green btn-sm" onclick="openRegModal()"><i data-lucide="user-plus" style="width:14px;height:14px"></i> Daftar Akun</button>
+        <button class="btn btn-blue btn-sm" onclick="openLoginModal('coordinator')"><i data-lucide="log-in" style="width:14px;height:14px"></i> Koordinator</button>
+        <button class="btn btn-sm" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff" onclick="openLoginModal('admin')"><i data-lucide="shield" style="width:14px;height:14px"></i> Admin</button>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <div style="flex:1;padding:40px 24px">
+      <div style="max-width:1200px;margin:0 auto">
+
+        <!-- INFO BOARD -->
+        ${info ? `
+        <div class="info-board" style="margin-bottom:32px">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div style="font-size:2rem;animation:bounce 2s infinite">📢</div>
+            <div>
+              <div style="font-weight:800;color:#fbbf24;margin-bottom:6px;font-size:1rem">📋 Pengumuman & Informasi Penting</div>
+              <div style="color:rgba(255,255,255,.85);line-height:1.7;font-size:.92rem;white-space:pre-line">${esc(info)}</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+            ${['📅 Segera mendaftarkan peserta','✅ Pastikan berkas lengkap','📞 Hubungi koordinator sekolah'].map(t=>`<span style="background:rgba(245,158,11,.2);border:1px solid rgba(245,158,11,.35);border-radius:20px;padding:4px 12px;font-size:.72rem;font-weight:700;color:#fbbf24">${t}</span>`).join('')}
+          </div>
+        </div>` : ''}
+
+        <!-- HERO TITLE -->
+        <div style="text-align:center;margin-bottom:60px;position:relative">
+          <div style="position:absolute;width:300px;height:300px;background:#3b82f6;border-radius:50%;opacity:.04;top:-80px;left:-80px;animation:float 6s ease-in-out infinite"></div>
+          <div style="position:absolute;width:200px;height:200px;background:#8b5cf6;border-radius:50%;opacity:.04;bottom:-40px;right:-60px;animation:float 8s ease-in-out infinite reverse"></div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);border-radius:30px;padding:6px 18px;margin-bottom:20px">
+            <span style="width:8px;height:8px;background:#10b981;border-radius:50%;animation:twinkle 1.5s infinite"></span>
+            <span style="font-size:.8rem;color:#93c5fd;font-weight:700">Pendaftaran Resmi ${yr}</span>
+          </div>
+          <h1 class="section-title" style="font-family:'Poppins';font-weight:900;font-size:clamp(1.6rem,4vw,3rem);line-height:1.2;margin-bottom:10px">OLIMPIADE OLAHRAGA SISWA NASIONAL</h1>
+          <h2 style="font-family:'Poppins';font-weight:700;font-size:clamp(1rem,2vw,1.5rem);color:#93c5fd;margin-bottom:8px">O2SN Tingkat Kecamatan Cigombong</h2>
+          <p style="color:rgba(255,255,255,.55);font-size:.95rem;margin-bottom:32px">Kabupaten Bogor · Tahun ${yr}</p>
+          <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+            <button class="btn btn-green" style="font-size:1rem;padding:14px 28px" onclick="openRegModal()"><i data-lucide="clipboard-list" style="width:18px;height:18px"></i> Daftar Sekarang</button>
+            <button class="btn btn-blue" style="font-size:1rem;padding:14px 28px" onclick="openLoginModal('coordinator')"><i data-lucide="log-in" style="width:18px;height:18px"></i> Login Koordinator</button>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin-bottom:50px">
+          ${[
+            {v:APP.schools.length, l:'Sekolah Terdaftar', c:'#60a5fa', e:'🏫'},
+            {v:APP.students.length, l:'Total Peserta', c:'#34d399', e:'👥'},
+            {v:5, l:'Cabang Olahraga', c:'#a78bfa', e:'🏅'},
+            {v:APP.students.filter(s=>s.verified==='true').length, l:'Terverifikasi', c:'#fb923c', e:'✅'}
+          ].map(s=>`
+            <div class="stat-card" style="text-align:center">
+              <div style="font-size:1.8rem;margin-bottom:6px">${s.e}</div>
+              <div style="font-size:2.2rem;font-weight:900;color:${s.c}">${s.v}</div>
+              <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-top:6px;font-weight:700">${s.l}</div>
+            </div>`).join('')}
+        </div>
+
+        <!-- SPORTS -->
+        <div style="margin-bottom:60px">
+          <h3 class="section-title" style="text-align:center;font-size:1.5rem;margin-bottom:8px">5 Cabang Olahraga</h3>
+          <p style="text-align:center;color:rgba(255,255,255,.5);margin-bottom:24px;font-size:.9rem">Pilih cabang olahraga yang sesuai kemampuan siswa Anda</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px">
+            ${Object.entries(SPORTS).map(([name,s])=>`
+              <div class="sport-card" style="padding:24px 16px;text-align:center">
+                <div style="font-size:3rem;animation:bounce 2s ease-in-out infinite;display:block;margin-bottom:10px">${s.emoji}</div>
+                <div style="font-weight:800;font-size:1rem;margin-bottom:4px">${name}</div>
+                <div style="font-size:.75rem;color:rgba(255,255,255,.5)">${s.desc}</div>
+                <div style="margin-top:12px;padding:4px 12px;background:rgba(255,255,255,.08);border-radius:20px;font-size:.72rem;color:rgba(255,255,255,.55);display:inline-block">Putra & Putri</div>
+              </div>`).join('')}
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="text-align:center;padding:20px;border-top:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.35);font-size:.75rem">
+          © ${yr} O2SN Kecamatan Cigombong · Kabupaten Bogor
+        </div>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+// ═══════════════════════════════════════════════════════
+// LOGIN / REGISTER MODALS
+// ═══════════════════════════════════════════════════════
+function openLoginModal(type){
+  const isAdmin = type==='admin';
+  const html = `
+  <div class="modal-overlay" id="login-modal" onclick="if(event.target===this)closeModal('login-modal')">
+    <div class="modal-box" style="max-width:420px;padding:32px">
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="width:64px;height:64px;background:linear-gradient(135deg,${isAdmin?'#8b5cf6,#7c3aed':'#3b82f6,#2563eb'});border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 12px">${isAdmin?'🛡️':'🏫'}</div>
+        <h2 style="font-family:'Poppins';font-weight:800;font-size:1.4rem;margin-bottom:4px">${isAdmin?'Login Administrator':'Login Koordinator'}</h2>
+        <p style="color:rgba(255,255,255,.5);font-size:.83rem">${isAdmin?'Panel Manajemen O2SN':'Pendaftaran Peserta Didik'}</p>
+      </div>
+      ${!isAdmin?`<div style="margin-bottom:14px"><label class="form-label">NPSN Sekolah</label><input id="l-npsn" class="form-input" placeholder="Contoh: 20201142" maxlength="20"/></div>`:''}
+      <div style="margin-bottom:22px">
+        <label class="form-label">Password</label>
+        <div style="position:relative">
+          <input id="l-pw" type="password" class="form-input" style="padding-right:42px" placeholder="Masukkan password"/>
+          <button type="button" onclick="togglePw('l-pw','l-eye')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,.5)"><i id="l-eye" data-lucide="eye" style="width:18px;height:18px"></i></button>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal('login-modal')">Batal</button>
+        <button class="btn btn-blue" style="flex:2;justify-content:center" onclick="doLogin('${type}')" id="l-btn"><i data-lucide="log-in" style="width:16px;height:16px"></i> Masuk</button>
+      </div>
+      ${!isAdmin?`<div style="text-align:center;margin-top:14px"><button onclick="openResetModal()" style="background:none;border:none;color:#93c5fd;cursor:pointer;font-size:.82rem;font-weight:600;text-decoration:underline">Lupa Password?</button></div>`:''}
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html);
+  lucide.createIcons();
+  setTimeout(()=>{ const el=document.getElementById(isAdmin?'l-pw':'l-npsn'); if(el)el.focus(); },100);
+  document.getElementById('l-pw')?.addEventListener('keydown',e=>{ if(e.key==='Enter')doLogin(type); });
+}
+
+function togglePw(inputId,iconId){
+  const inp=document.getElementById(inputId), ico=document.getElementById(iconId);
+  if(!inp)return;
+  if(inp.type==='password'){ inp.type='text'; ico?.setAttribute('data-lucide','eye-off'); }
+  else { inp.type='password'; ico?.setAttribute('data-lucide','eye'); }
+  lucide.createIcons();
+}
+
+function doLogin(type){
+  const btn=document.getElementById('l-btn');
+  if(btn){ btn.disabled=true; btn.innerHTML='<i data-lucide="loader" style="width:16px;height:16px;animation:spin 1s linear infinite"></i> Memproses...'; lucide.createIcons(); }
+  setTimeout(()=>{
+    if(type==='admin'){
+      const pw=document.getElementById('l-pw')?.value||'';
+      if(pw===adminPassword){ APP.currentUser={type:'admin'}; closeModal('login-modal'); showToast('Selamat datang, Administrator! 👋'); renderAdmin(); }
+      else { showToast('Password salah!','error'); if(btn){btn.disabled=false;btn.innerHTML='<i data-lucide="log-in" style="width:16px;height:16px"></i> Masuk';lucide.createIcons();} }
+    } else {
+      const npsn=document.getElementById('l-npsn')?.value?.trim()||'';
+      const pw=document.getElementById('l-pw')?.value||'';
+      const school=APP.schools.find(s=>s.npsn===npsn);
+      if(!school){ showToast('NPSN tidak ditemukan!','error'); if(btn){btn.disabled=false;btn.innerHTML='<i data-lucide="log-in" style="width:16px;height:16px"></i> Masuk';lucide.createIcons();} return; }
+      if(pw!==school.password_hash){ showToast('Password salah!','error'); if(btn){btn.disabled=false;btn.innerHTML='<i data-lucide="log-in" style="width:16px;height:16px"></i> Masuk';lucide.createIcons();} return; }
+      APP.currentUser={type:'coordinator',npsn,schoolName:school.school_name,schoolRecord:school};
+      closeModal('login-modal'); showToast(`Selamat datang, ${school.school_name}! 🏫`); renderCoordinator();
+    }
+  },700);
+}
+
+function openRegModal(){
+  const html=`
+  <div class="modal-overlay" id="reg-modal" onclick="if(event.target===this)closeModal('reg-modal')">
+    <div class="modal-box" style="max-width:520px;padding:32px">
+      <div style="text-align:center;margin-bottom:22px">
+        <div style="width:64px;height:64px;background:linear-gradient(135deg,#10b981,#059669);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 10px">🏫</div>
+        <h2 style="font-family:'Poppins';font-weight:800;font-size:1.4rem;margin-bottom:4px">Registrasi Akun Sekolah</h2>
+        <p style="color:rgba(255,255,255,.5);font-size:.82rem">Daftarkan sekolah sebagai Koordinator O2SN</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+        <div style="grid-column:1/-1"><label class="form-label">Nama Sekolah *</label><input id="rg-school" class="form-input" placeholder="Nama lengkap sekolah"/></div>
+        <div><label class="form-label">NPSN *</label><input id="rg-npsn" class="form-input" placeholder="20201142" maxlength="20"/></div>
+        <div><label class="form-label">Kecamatan *</label><input id="rg-kec" class="form-input" placeholder="Cigombong"/></div>
+        <div><label class="form-label">Kabupaten *</label><input id="rg-kab" class="form-input" placeholder="Bogor"/></div>
+        <div><label class="form-label">No. HP *</label><input id="rg-hp" class="form-input" placeholder="08xxxxxxxxxx" type="tel"/></div>
+        <div><label class="form-label">Password *</label>
+          <div style="position:relative"><input id="rg-pw" type="password" class="form-input" style="padding-right:40px" placeholder="Min 6 karakter"/>
+          <button type="button" onclick="togglePw('rg-pw','rg-eye')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:rgba(255,255,255,.5)"><i id="rg-eye" data-lucide="eye" style="width:16px;height:16px"></i></button></div>
+        </div>
+      </div>
+      <div style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.2);border-radius:10px;padding:12px;margin-bottom:16px">
+        <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
+          <input type="checkbox" id="rg-agree" style="margin-top:2px;accent-color:#3b82f6"/>
+          <span style="font-size:.82rem;color:rgba(255,255,255,.8);line-height:1.5">Saya menyatakan data yang diisi adalah benar dan bertanggung jawab atas kebenaran data dalam O2SN ${APP.config.event_year||'2026'}.</span>
+        </label>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal('reg-modal')">Batal</button>
+        <button class="btn btn-green" style="flex:2;justify-content:center" onclick="doRegister()" id="rg-btn"><i data-lucide="user-plus" style="width:16px;height:16px"></i> Registrasi</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html); lucide.createIcons();
+}
+
+async function doRegister(){
+  const v=id=>document.getElementById(id)?.value?.trim()||'';
+  const school=v('rg-school'),npsn=v('rg-npsn'),kec=v('rg-kec'),kab=v('rg-kab'),hp=v('rg-hp'),pw=v('rg-pw');
+  const agree=document.getElementById('rg-agree')?.checked;
+  if(!school||!npsn||!kec||!kab||!hp||!pw){ showToast('Semua kolom wajib diisi!','error'); return; }
+  if(!agree){ showToast('Centang persetujuan terlebih dahulu!','error'); return; }
+  if(pw.length<6){ showToast('Password minimal 6 karakter!','error'); return; }
+  if(APP.schools.find(s=>s.npsn===npsn)){ showToast('NPSN sudah terdaftar!','error'); return; }
+  const btn=document.getElementById('rg-btn');
+  if(btn){ btn.disabled=true; btn.innerHTML='<i data-lucide="loader" style="width:16px;height:16px;animation:spin 1s linear infinite"></i> Memproses...'; lucide.createIcons(); }
+  try{
+    const r=await dataSdk.create({type:'school',school_name:school,npsn,kecamatan:kec,kabupaten:kab,phone:hp,password_hash:pw,status:'active',reg_date:new Date().toISOString()});
+    if(r.isOk){ closeModal('reg-modal'); showToast(`✅ ${school} berhasil terdaftar!`); }
+    else showToast('Gagal registrasi!','error');
+  }catch(e){ showToast('Terjadi kesalahan!','error'); }
+  finally{ if(btn){btn.disabled=false;btn.innerHTML='<i data-lucide="user-plus" style="width:16px;height:16px"></i> Registrasi';lucide.createIcons();} }
+}
+
+function openResetModal(){
+  closeModal('login-modal');
+  const html=`
+  <div class="modal-overlay" id="reset-modal">
+    <div class="modal-box" style="max-width:400px;padding:32px">
+      <div style="text-align:center;margin-bottom:22px">
+        <div style="width:56px;height:56px;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 10px">🔑</div>
+        <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:4px">Reset Password</h2>
+        <p style="color:rgba(255,255,255,.5);font-size:.83rem">Masukkan NPSN dan buat password baru</p>
+      </div>
+      <div style="margin-bottom:12px"><label class="form-label">NPSN Sekolah</label><input id="rs-npsn" class="form-input" placeholder="Masukkan NPSN"/></div>
+      <div style="margin-bottom:12px"><label class="form-label">Password Baru</label><input id="rs-pw1" type="password" class="form-input" placeholder="Password baru"/></div>
+      <div style="margin-bottom:22px"><label class="form-label">Konfirmasi Password</label><input id="rs-pw2" type="password" class="form-input" placeholder="Ulangi password"/></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1" onclick="closeModal('reset-modal');openLoginModal('coordinator')">Kembali</button>
+        <button class="btn btn-yellow" style="flex:2;justify-content:center" onclick="doReset()" id="rs-btn">Reset Password</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html); lucide.createIcons();
+}
+
+async function doReset(){
+  const npsn=document.getElementById('rs-npsn')?.value?.trim()||'';
+  const pw1=document.getElementById('rs-pw1')?.value||'';
+  const pw2=document.getElementById('rs-pw2')?.value||'';
+  if(!npsn||!pw1||!pw2){ showToast('Semua kolom wajib!','error'); return; }
+  if(pw1!==pw2){ showToast('Password tidak sama!','error'); return; }
+  if(pw1.length<6){ showToast('Min 6 karakter!','error'); return; }
+  const school=APP.schools.find(s=>s.npsn===npsn);
+  if(!school){ showToast('NPSN tidak ditemukan!','error'); return; }
+  const r=await dataSdk.update({...school,password_hash:pw1});
+  if(r.isOk){ closeModal('reset-modal'); showToast('Password berhasil direset ✅'); openLoginModal('coordinator'); }
+  else showToast('Gagal reset!','error');
+}
+
+function doLogout(){ APP.currentUser=null; renderHome(); showToast('Berhasil keluar 👋','info'); }
+
+// ═══════════════════════════════════════════════════════
+// COORDINATOR
+// ═══════════════════════════════════════════════════════
+function renderCoordinator(){
+  APP.currentPage='coordinator';
+  const u=APP.currentUser;
+  const myStudents=APP.students.filter(s=>s.coordinator_npsn===u.npsn);
+  const app=document.getElementById('app');
+  app.innerHTML=`
+  <div style="min-height:100vh;display:flex;flex-direction:column">
+    <nav class="navbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:42px;height:42px;background:linear-gradient(135deg,#3b82f6,#2563eb);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem">🏫</div>
+        <div>
+          <div style="font-weight:800;font-size:.95rem;color:#93c5fd">${esc(u.schoolName)}</div>
+          <div style="font-size:.7rem;color:rgba(255,255,255,.4)">NPSN: ${u.npsn} · Koordinator</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-green btn-sm" onclick="openAddStudentModal()"><i data-lucide="user-plus" style="width:14px;height:14px"></i> Daftarkan Peserta</button>
+        <button class="btn btn-red btn-sm" onclick="doLogout()"><i data-lucide="log-out" style="width:14px;height:14px"></i> Keluar</button>
+      </div>
+    </nav>
+    <div style="flex:1;padding:24px;overflow-y:auto">
+      <div style="max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 340px;gap:24px">
+
+        <!-- LEFT: Student List -->
+        <div>
+          <!-- Stats -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
+            ${[
+              {v:myStudents.length,l:'Total Peserta',c:'#60a5fa',e:'👥'},
+              {v:myStudents.filter(s=>s.verified==='true').length,l:'Tervalidasi',c:'#34d399',e:'✅'},
+              {v:myStudents.filter(s=>s.verified!=='true').length,l:'Menunggu',c:'#fbbf24',e:'⏳'}
+            ].map(s=>`<div class="stat-card" style="text-align:center;padding:16px"><div style="font-size:1.5rem">${s.e}</div><div style="font-size:1.8rem;font-weight:900;color:${s.c};margin:4px 0">${s.v}</div><div style="font-size:.78rem;color:rgba(255,255,255,.5);font-weight:700">${s.l}</div></div>`).join('')}
+          </div>
+
+          <!-- Table -->
+          <div class="glass" style="overflow:hidden">
+            <div style="padding:18px 20px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:space-between">
+              <h3 style="font-size:1.05rem;font-weight:800;margin:0">📋 Daftar Peserta Terdaftar</h3>
+            </div>
+            <div style="overflow-x:auto">
+              <table class="data-table">
+                <thead><tr><th>#</th><th>Nama Lengkap</th><th>NISN</th><th>Cabang</th><th>Kategori</th><th>Kelas</th><th>Tgl Daftar</th><th>Status</th><th>Aksi</th></tr></thead>
+                <tbody>
+                  ${myStudents.length===0
+                    ? `<tr><td colspan="8" style="text-align:center;padding:40px;color:rgba(255,255,255,.3)">Belum ada peserta terdaftar.<br>Klik "Daftarkan Peserta" untuk menambahkan.</td></tr>`
+                    : myStudents.map((s,i)=>`
+                    <tr>
+                      <td style="color:rgba(255,255,255,.4)">${i+1}</td>
+                      <td><div style="font-weight:700">${esc(s.student_name)}</div></td>
+                      <td style="font-size:.76rem;color:rgba(255,255,255,.6)">${esc(s.nisn||'-')}</td>
+                      <td><span style="display:flex;align-items:center;gap:5px">${SPORTS[s.sport]?.emoji||''} ${esc(s.sport)}</span></td>
+                      <td><span class="badge ${s.sport_gender==='Putra'?'badge-blue':'badge-red'}">${s.sport_gender==='Putra'?'👦':'👧'} ${s.sport_gender}</span></td>
+                      <td style="text-align:center"><span style="background:rgba(255,255,255,.08);padding:2px 8px;border-radius:6px">${s.grade}</span></td>
+                      <td style="font-size:.75rem;color:rgba(255,255,255,.5)">${fmtDate(s.reg_date)}</td>
+                      <td>${s.verified==='true'
+                        ? `<span class="badge badge-green">✅ Tervalidasi</span>`
+                        : `<span class="badge badge-yellow">⏳ Menunggu</span>`}</td>
+                      <td>
+                        <div style="display:flex;gap:4px;flex-wrap:wrap">
+                          <button class="btn btn-sm btn-blue" onclick="reviewPeserta('${s.__backendId}')"><i data-lucide="eye" style="width:12px;height:12px"></i> Detail</button>
+                          ${s.verified==='true'
+                            ? `<button class="btn btn-sm btn-green" onclick="printBukti('${s.__backendId}')"><i data-lucide="printer" style="width:12px;height:12px"></i> Cetak</button>`
+                            : `<span style="font-size:.68rem;color:rgba(255,255,255,.35);font-style:italic">Tunggu validasi</span>`}
+                        </div>
+                      </td>
+                    </tr>`).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Info Panel -->
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="glass" style="padding:18px">
+            <h3 style="font-size:.95rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:6px"><i data-lucide="info" style="width:16px;height:16px;color:#60a5fa"></i> Info Sekolah</h3>
+            ${[['Nama Sekolah',u.schoolName],['NPSN',u.npsn]].map(([k,v])=>`
+              <div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:.82rem">
+                <span style="color:rgba(255,255,255,.5)">${k}</span><span style="font-weight:700">${v}</span>
+              </div>`).join('')}
+          </div>
+          <div class="glass" style="padding:18px">
+            <h3 style="font-size:.95rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:6px"><i data-lucide="bar-chart-2" style="width:16px;height:16px;color:#a78bfa"></i> Rekap Per Cabang</h3>
+            ${Object.entries(SPORTS).map(([name,s])=>{
+              const cnt=myStudents.filter(st=>st.sport===name).length;
+              return `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.8rem">
+                <span>${s.emoji} ${name}</span>
+                <span style="background:rgba(59,130,246,.2);color:#93c5fd;padding:2px 10px;border-radius:10px;font-weight:700">${cnt}</span>
+              </div>`;
+            }).join('')}
+          </div>
+          ${APP.config.informasi_penting?`
+          <div class="info-board" style="padding:16px">
+            <div style="font-weight:800;color:#fbbf24;margin-bottom:8px;font-size:.88rem">📢 Informasi Panitia</div>
+            <div style="color:rgba(255,255,255,.8);font-size:.8rem;line-height:1.6;white-space:pre-line">${esc(APP.config.informasi_penting)}</div>
+          </div>`:''}
+        </div>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+// ── Add Student Modal ──
+function openAddStudentModal(){
+  const iconMap={photo:'📷',kk:'🏠',akta:'📄',rapot:'📚',surat:'✅'};
+  const labelMap={photo:'Foto Peserta (2×3)',kk:'Kartu Keluarga (KK)',akta:'Akta Kelahiran',rapot:'Rapor Terakhir',surat:'Surat Aktif Sekolah'};
+  // Ambil berkas yang diaktifkan admin (default semua aktif jika belum diatur)
+  const allBerkas=['photo','kk','akta','rapot','surat'];
+  const activeBerkas=APP.config.berkas_aktif ? JSON.parse(APP.config.berkas_aktif) : allBerkas;
+  const berkasToShow=allBerkas.filter(f=>activeBerkas.includes(f));
+  const html=`
+  <div class="modal-overlay" id="add-student-modal" style="align-items:flex-start">
+    <div class="modal-box" style="max-width:720px;padding:28px;margin:20px auto">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px">
+        <h2 style="font-size:1.25rem;font-weight:800;display:flex;align-items:center;gap:8px"><i data-lucide="user-plus" style="width:22px;height:22px;color:#34d399"></i> Daftarkan Peserta Baru</h2>
+        <button onclick="closeModal('add-student-modal')" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer"><i data-lucide="x" style="width:22px;height:22px"></i></button>
+      </div>
+
+      <!-- Data Diri -->
+      <div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:12px;padding:16px;margin-bottom:16px">
+        <div style="font-weight:800;font-size:.88rem;color:#93c5fd;margin-bottom:12px">👤 Data Diri Peserta</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div><label class="form-label">Nama Lengkap *</label><input id="sp-nama" class="form-input" placeholder="Nama lengkap peserta"/></div>
+          <div><label class="form-label">NISN *</label><input id="sp-nisn" class="form-input" placeholder="Nomor Induk Siswa Nasional" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')"/></div>
+          <div><label class="form-label">Tempat Lahir *</label><input id="sp-tempat" class="form-input" placeholder="Kota/Kabupaten"/></div>
+          <div><label class="form-label">Tanggal Lahir *</label><input id="sp-tgl" type="date" class="form-input"/></div>
+          <div><label class="form-label">Jenis Kelamin *</label>
+            <select id="sp-gender" class="form-input"><option value="">Pilih</option><option>Laki-laki</option><option>Perempuan</option></select>
+          </div>
+          <div><label class="form-label">Agama *</label>
+            <select id="sp-agama" class="form-input"><option value="">Pilih</option>${RELIGIONS.map(r=>`<option>${r}</option>`).join('')}</select>
+          </div>
+          <div><label class="form-label">Kelas *</label>
+            <select id="sp-kelas" class="form-input"><option value="">Pilih</option>${GRADES.map(g=>`<option>Kelas ${g}</option>`).join('')}</select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cabang Olahraga -->
+      <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:16px;margin-bottom:16px">
+        <div style="font-weight:800;font-size:.88rem;color:#c4b5fd;margin-bottom:12px">🏅 Cabang Olahraga</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:10px" id="sports-grid-modal">
+          ${Object.entries(SPORTS).map(([name,s])=>`
+            <button type="button" class="sport-card" id="sp-sport-${name}" onclick="selectSport('${name}')" style="padding:14px 10px;text-align:center">
+              <div style="font-size:1.8rem;margin-bottom:4px">${s.emoji}</div>
+              <div style="font-size:.72rem;font-weight:700;line-height:1.2">${name}</div>
+            </button>`).join('')}
+        </div>
+        <div id="kategori-section" style="display:none;margin-top:14px">
+          <label class="form-label">Kategori *</label>
+          <div style="display:flex;gap:10px">
+            <button type="button" class="gender-btn" id="kat-putra" onclick="selectKategori('Putra')" style="flex:1;text-align:center">👦 Putra</button>
+            <button type="button" class="gender-btn" id="kat-putri" onclick="selectKategori('Putri')" style="flex:1;text-align:center">👧 Putri</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Koordinator -->
+      <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:12px;padding:16px;margin-bottom:16px">
+        <div style="font-weight:800;font-size:.88rem;color:#6ee7b7;margin-bottom:12px">👤 Koordinator</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div><label class="form-label">Nama Koordinator *</label><input id="sp-guru" class="form-input" placeholder="Nama lengkap koordinator"/></div>
+          <div><label class="form-label">NIP Koordinator</label><input id="sp-nip-koord" class="form-input" placeholder="Kosongkan jika tidak ada"/></div>
+          <div><label class="form-label">No. HP Koordinator *</label><input id="sp-hp" class="form-input" placeholder="08xxxxxxxxxx" type="tel"/></div>
+        </div>
+      </div>
+
+      <!-- Upload Berkas -->
+      <div style="background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:16px;margin-bottom:18px">
+        <div style="font-weight:800;font-size:.88rem;color:#fcd34d;margin-bottom:14px">📎 Upload Berkas Pendukung (JPG/PNG, maks. 5MB)</div>
+        ${berkasToShow.length===0
+          ? `<div style="text-align:center;color:rgba(255,255,255,.35);font-size:.85rem;padding:16px">Tidak ada berkas yang perlu diunggah.</div>`
+          : `<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          ${berkasToShow.map(fileType=>`
+          <div>
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:7px">
+              <span style="font-size:1.4rem">${iconMap[fileType]}</span>
+              <label class="form-label" style="margin:0">${labelMap[fileType]}</label>
+            </div>
+            <label class="upload-zone" style="cursor:pointer">
+              <input type="file" id="sp-${fileType}" accept="image/jpeg,image/png,image/jpg" style="display:none" onchange="handleFileUpload('sp-${fileType}')"/>
+              <i data-lucide="upload" style="width:16px;height:16px;color:#60a5fa;flex-shrink:0"></i>
+              <span id="sp-${fileType}-text" style="font-size:.8rem;color:rgba(255,255,255,.6)">Klik untuk upload</span>
+            </label>
+            <div id="sp-${fileType}-thumb" class="file-thumb" style="display:none">
+              <img id="sp-${fileType}-img" style="width:100%;height:100%;object-fit:cover"/>
+              <div class="overlay">
+                <button type="button" class="file-action-btn" onclick="previewFile('sp-${fileType}')"><i data-lucide="eye" style="width:14px;height:14px"></i></button>
+                <button type="button" class="file-action-btn del" onclick="removeFile('sp-${fileType}')"><i data-lucide="trash-2" style="width:14px;height:14px"></i></button>
+              </div>
+            </div>
+          </div>`).join('')}
+        </div>`}
+        <div style="background:rgba(255,165,0,.1);border:1px solid rgba(255,165,0,.3);border-radius:8px;padding:10px;font-size:.75rem;color:rgba(255,255,255,.65);margin-top:12px">
+          ⚠️ Hanya file <strong>JPG/PNG</strong> yang diizinkan. Ukuran maksimal <strong>5MB</strong> per file.
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal('add-student-modal')">Batal</button>
+        <button class="btn btn-green" style="flex:2;justify-content:center" onclick="submitStudent()" id="sp-btn"><i data-lucide="user-plus" style="width:16px;height:16px"></i> Daftarkan Peserta</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html);
+  lucide.createIcons();
+  document.getElementById('kategori-section').style.display='none';
+}
+
+window.selectedSport=null; window.selectedKategori=null;
+function selectSport(name){
+  Object.keys(SPORTS).forEach(s=>{ document.getElementById(`sp-sport-${s}`)?.classList.toggle('selected',s===name); });
+  window.selectedSport=name;
+  document.getElementById('kategori-section').style.display='block';
+  window.selectedKategori=null;
+  ['putra','putri'].forEach(k=>document.getElementById(`kat-${k}`)?.classList.remove('active'));
+}
+function selectKategori(kat){
+  ['putra','putri'].forEach(k=>{ document.getElementById(`kat-${k}`)?.classList.toggle('active',k.charAt(0).toUpperCase()+k.slice(1)===kat); });
+  window.selectedKategori=kat;
+}
+
+function handleFileUpload(inputId){
+  const input=document.getElementById(inputId);
+  const file=input?.files[0];
+  if(!file)return;
+  if(!['image/jpeg','image/png','image/jpg'].includes(file.type)){
+    showToast('❌ Hanya JPG/PNG yang diizinkan!','error'); input.value=''; return;
+  }
+  if(file.size>5242880){ showToast('❌ Ukuran file maksimal 5MB!','error'); input.value=''; return; }
+  const reader=new FileReader();
+  reader.onload=(e)=>{
+    tempFiles[inputId]=e.target.result;
+    const thumb=document.getElementById(`${inputId}-thumb`);
+    const img=document.getElementById(`${inputId}-img`);
+    const txt=document.getElementById(`${inputId}-text`);
+    if(thumb) thumb.style.display='block';
+    if(img) img.src=e.target.result;
+    if(txt) txt.textContent='✓ File terpilih';
+    lucide.createIcons();
+  };
+  reader.readAsDataURL(file);
+}
+function removeFile(inputId){
+  delete tempFiles[inputId];
+  document.getElementById(inputId).value='';
+  const thumb=document.getElementById(`${inputId}-thumb`);
+  const txt=document.getElementById(`${inputId}-text`);
+  if(thumb) thumb.style.display='none';
+  if(txt) txt.textContent='Klik untuk upload';
+}
+function previewFile(inputId){
+  const data=tempFiles[inputId]; if(!data){ showToast('Tidak ada file','warning'); return; }
+  var ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px';
+  ov.innerHTML='<img src="'+data+'" style="max-width:92%;max-height:80vh;object-fit:contain;border-radius:8px"/>'
+    +'<button onclick="this.parentNode.remove()" style="background:#3b82f6;border:none;color:#fff;padding:10px 28px;border-radius:8px;cursor:pointer;font-weight:700;font-size:14px">Tutup</button>';
+  document.body.appendChild(ov);
+}
+
+async function submitStudent(){
+  if(!window.selectedSport){ showToast('Pilih cabang olahraga!','error'); return; }
+  if(!window.selectedKategori){ showToast('Pilih kategori Putra/Putri!','error'); return; }
+  const v=id=>document.getElementById(id)?.value?.trim()||'';
+  const nama=v('sp-nama'),nisn=v('sp-nisn'),tempat=v('sp-tempat'),tgl=v('sp-tgl'),gender=v('sp-gender'),agama=v('sp-agama'),kelas=v('sp-kelas'),guru=v('sp-guru'),hp=v('sp-hp'),nipkoord=v('sp-nip-koord');
+  if(!nama||!nisn||!tempat||!tgl||!gender||!agama||!kelas||!guru||!hp){ showToast('Semua kolom data diri wajib diisi!','error'); return; }
+  if(nisn.length!==10){ showToast('NISN harus 10 digit!','error'); return; }
+  const btn=document.getElementById('sp-btn');
+  if(btn){ btn.disabled=true; btn.innerHTML='<i data-lucide="loader" style="width:16px;height:16px;animation:spin 1s linear infinite"></i> Mendaftarkan...'; lucide.createIcons(); }
+  try{
+    const fileFields={};
+    ['photo','kk','akta','rapot','surat'].forEach(f=>{ if(tempFiles[`sp-${f}`]) fileFields[f]=tempFiles[`sp-${f}`]; });
+    const data={
+      type:'student',student_name:nama,nisn:nisn,birth_place:tempat,birth_date:tgl,gender,religion:agama,grade:kelas,
+      sport:window.selectedSport,sport_gender:window.selectedKategori,
+      teacher_name:guru,teacher_phone:hp,teacher_nip:nipkoord,
+      verified:'false',reg_date:new Date().toISOString(),
+      coordinator_npsn:APP.currentUser.npsn,school_name:APP.currentUser.schoolName,
+      ...fileFields
+    };
+    const r=await dataSdk.create(data);
+    if(r.isOk){
+      closeModal('add-student-modal');
+      showToast('✅ Peserta berhasil didaftarkan! Menunggu verifikasi admin.');
+      Object.keys(tempFiles).forEach(k=>delete tempFiles[k]);
+      window.selectedSport=null; window.selectedKategori=null;
+      renderCoordinator();
+    } else showToast('Gagal mendaftar!','error');
+  }catch(e){ showToast('Terjadi kesalahan: '+e.message,'error'); }
+  finally{ if(btn){btn.disabled=false;btn.innerHTML='<i data-lucide="user-plus" style="width:16px;height:16px"></i> Daftarkan Peserta';lucide.createIcons();} }
+}
+
+// ── Review peserta (koordinator) ──
+function reviewPeserta(id){
+  const s=APP.students.find(st=>st.__backendId===id); if(!s)return;
+  const berkasItems=[
+    {key:'photo',label:'Foto 2×3',icon:'📷'},
+    {key:'kk',label:'Kartu Keluarga',icon:'🏠'},
+    {key:'akta',label:'Akta Kelahiran',icon:'📄'},
+    {key:'rapot',label:'Rapor',icon:'📚'},
+    {key:'surat',label:'Surat Aktif',icon:'✅'}
+  ];
+  const html=`
+  <div class="modal-overlay" id="review-modal">
+    <div class="modal-box" style="max-width:700px;padding:28px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <h2 style="font-size:1.2rem;font-weight:800">📋 Detail Peserta</h2>
+        <button onclick="closeModal('review-modal')" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer"><i data-lucide="x" style="width:22px;height:22px"></i></button>
+      </div>
+      <!-- Info -->
+      <div class="glass-blue" style="padding:16px;margin-bottom:18px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:.85rem">
+          ${[['Nama',s.student_name],['NISN',s.nisn||'-'],['Cabang',`${SPORTS[s.sport]?.emoji||''} ${s.sport}`],['Kategori',s.sport_gender],['Kelas',s.grade],['Sekolah',s.school_name],['Tgl Daftar',fmtDate(s.reg_date)]].map(([k,v])=>`
+          <div><span style="color:rgba(255,255,255,.5);font-size:.72rem;display:block;font-weight:700">${k}</span><div style="font-weight:700;color:#93c5fd">${esc(v)}</div></div>`).join('')}
+        </div>
+        <div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(59,130,246,.2)">
+          <span style="color:rgba(255,255,255,.5);font-size:.72rem;font-weight:700">STATUS</span>
+          <div style="margin-top:4px">
+            ${s.verified==='true'
+              ? `<span class="badge badge-green" style="font-size:.82rem;padding:6px 14px">✅ TERVALIDASI OLEH ADMIN</span>`
+              : `<span class="badge badge-yellow" style="font-size:.82rem;padding:6px 14px">⏳ Menunggu Verifikasi Admin</span>`}
+          </div>
+        </div>
+      </div>
+      <!-- Berkas -->
+      <h3 style="font-size:.95rem;font-weight:800;margin-bottom:12px">📎 Berkas yang Diupload</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:20px">
+        ${berkasItems.map(b=>{
+          const hasFile=!!s[b.key];
+          return `<div class="glass" style="padding:12px;text-align:center;overflow:hidden">
+            <div style="font-size:1.6rem;margin-bottom:6px">${b.icon}</div>
+            <div style="font-size:.73rem;font-weight:700;color:rgba(255,255,255,.8);margin-bottom:8px">${b.label}</div>
+            ${hasFile
+              ? `<div class="file-thumb" style="height:70px;margin:0">
+                  <img src="${s[b.key]}" style="width:100%;height:100%;object-fit:cover"/>
+                  <div class="overlay">
+                    <button type="button" class="file-action-btn" onclick="viewBerkas('${id}','${b.key}')"><i data-lucide="eye" style="width:14px;height:14px"></i></button>
+                  </div>
+                </div>`
+              : `<div style="background:rgba(255,255,255,.06);border-radius:6px;padding:10px;color:rgba(255,255,255,.3);font-size:.7rem">Tidak ada</div>`}
+          </div>`;
+        }).join('')}
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal('review-modal')">Tutup</button>
+        ${s.verified==='true' ? `<button class="btn btn-green" style="flex:1;justify-content:center" onclick="closeModal('review-modal');printBukti('${id}')"><i data-lucide="printer" style="width:16px;height:16px"></i> Cetak Bukti</button>` : ''}
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html); lucide.createIcons();
+}
+
+function viewBerkas(studentId, field){
+  const s=APP.students.find(st=>st.__backendId===studentId); if(!s)return;
+  const data=s[field]; if(!data){ showToast('File tidak ditemukan!','error'); return; }
+  const labels={photo:'Foto',kk:'Kartu Keluarga',akta:'Akta Kelahiran',rapot:'Rapor',surat:'Surat Aktif'};
+  var label=labels[field]||field;
+  var ov=document.createElement('div');
+  ov.style.cssText='position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px';
+  ov.innerHTML='<div style="color:#fff;font-size:14px;font-weight:bold">'+label+'</div>'
+    +'<img src="'+data+'" style="max-width:92%;max-height:78vh;border-radius:8px;box-shadow:0 10px 40px rgba(0,0,0,.5);object-fit:contain"/>'
+    +'<button onclick="this.parentNode.remove()" style="background:#3b82f6;border:none;color:#fff;padding:10px 28px;border-radius:8px;cursor:pointer;font-weight:700;font-size:14px">Tutup</button>';
+  document.body.appendChild(ov);
+}
+
+// ── Capitalize Each Word helper ──
+function titleCase(str){
+  if(!str)return'';
+  return str.replace(/\w\S*/g,function(w){return w.charAt(0).toUpperCase()+w.substr(1).toLowerCase();});
+}
+
+// ── Print Bukti ──
+function printBukti(id){
+  const s=APP.students.find(st=>st.__backendId===id); if(!s)return;
+  const yr=APP.config.event_year||'2026';
+  const logoUrl=APP.config.logo_url||'';
+  const regCode=id.substring(0,8).toUpperCase();
+  const qrData='O2SN-'+yr+'-'+regCode+'-'+s.student_name+'-'+s.sport;
+
+  // Nama & NIP koordinator (capitalize)
+  const koordinatorName=titleCase(s.teacher_name||'Koordinator');
+  const koordinatorNip=s.teacher_nip||'';
+
+  // Ketua panitia (capitalize)
+  const ketuaName=titleCase(APP.config.ketua_panitia||'................................');
+  const ketuaNip=APP.config.nip_ketua||'................................';
+
+  // Stempel & TTD ketua panitia — pakai posisi & ukuran tersimpan
+  const stempelUrl=APP.config.stempel_url||'';
+  const ttdUrl=APP.config.ttd_url||'';
+  const ttdW=parseInt(APP.config.ttd_size||120);
+  const ttdOp=parseFloat(APP.config.ttd_opacity||0.9);
+  const stempelW=parseInt(APP.config.stempel_size||110);
+  const stempelOp=parseFloat(APP.config.stempel_opacity||0.75);
+  // Skala dari px pratinjau (480px wide area ~160px) ke mm cetak (~70mm kolom)
+  // Pratinjau area: 160px wide, print area: ~68mm. Ratio ~0.425mm/px
+  const scale=68/160;
+  const ttdX=(parseFloat(APP.config.ttd_x)||10)*scale;
+  const ttdY=(parseFloat(APP.config.ttd_y)||18)*scale;
+  const stempelX=(parseFloat(APP.config.stempel_x)||20)*scale;
+  const stempelY=(parseFloat(APP.config.stempel_y)||30)*scale;
+  const ketuaTtdHtml=''
+    +(ttdUrl?'<img src="'+ttdUrl+'" style="position:absolute;left:'+ttdX+'mm;top:'+ttdY+'mm;width:'+Math.round(ttdW*scale)+'mm;height:auto;object-fit:contain;opacity:'+ttdOp+';pointer-events:none"/>':'')
+    +(stempelUrl?'<img src="'+stempelUrl+'" style="position:absolute;left:'+stempelX+'mm;top:'+stempelY+'mm;width:'+Math.round(stempelW*scale)+'mm;height:auto;object-fit:contain;opacity:'+stempelOp+';pointer-events:none"/>':'');
+  var now=new Date();
+  var bulanID=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  var tglStr='Cigombong, '+now.getDate()+' '+bulanID[now.getMonth()]+' '+now.getFullYear();
+
+  // Baris data peserta
+  var dataRows=[
+    ['Nama Lengkap', s.student_name||'-'],
+    ['NISN', s.nisn||'-'],
+    ['Tempat/Tanggal Lahir', (s.birth_place||'-')+' / '+fmtDateShort(s.birth_date)],
+    ['Jenis Kelamin', s.gender||'-'],
+    ['Agama', s.religion||'-'],
+    ['Asal Sekolah', s.school_name||'-'],
+    ['Kelas', s.grade||'-'],
+    ['Cabang Olahraga', s.sport+' ('+s.sport_gender+')'],
+    ['Nama Koordinator', koordinatorName],
+    ['NIP.', koordinatorNip||'-'],
+    ['No. HP.', s.teacher_phone||'-'],
+  ].map(function(r){ return '<div class="dr"><div class="dl">'+r[0]+'</div><div class="dv">: '+esc(r[1])+'</div></div>'; }).join('');
+
+  var photoHtml=s.photo
+    ? '<img src="'+s.photo+'" alt="Foto" style="width:100%;height:100%;object-fit:cover"/>'
+    : '<div style="text-align:center;font-size:9pt;color:#999">Foto<br>Peserta</div>';
+
+  var logoHtml=logoUrl
+    ? '<img style="width:75px;height:75px;object-fit:contain;flex-shrink:0" src="'+logoUrl+'" alt="Logo"/>'
+    : '<div style="width:75px;height:75px;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0">🏆</div>';
+
+  var css=''
+    +'*{margin:0;padding:0;box-sizing:border-box}'
+    +'html,body{width:210mm;background:#fff;color:#000}'
+    +'@page{size:A4 portrait;margin:0}'
+    +'.page{width:210mm;min-height:297mm;padding:14mm 18mm 12mm 18mm;margin:0 auto}'
+    +'.kop{border-bottom:3px double #000;padding-bottom:10px;margin-bottom:16px;display:flex;align-items:center;gap:14px}'
+    +'.kop-text{flex:1;text-align:center}'
+    +'.kop-text .k1{font-size:13.5pt;font-weight:bold;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}'
+    +'.kop-text .k2{font-size:12pt;font-weight:bold;text-transform:uppercase;margin-bottom:3px}'
+    +'.kop-text .k3{font-size:11pt;font-weight:bold;text-transform:uppercase;margin-bottom:2px}'
+    +'.cs{display:flex;gap:18px;margin-bottom:16px}'
+    +'.pb{width:115px;height:155px;border:2px solid #000;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;background:#f0f0f0}'
+    +'.dt{flex:1}'
+    +'.dr{display:flex;padding:3.5px 0;border-bottom:1px solid #e8e8e8;font-size:10.5pt}'
+    +'.dl{width:170px;font-weight:bold;flex-shrink:0}'
+    +'.dv{flex:1;padding-left:6px}'
+    +'.rs{display:flex;flex-direction:column;gap:7px;align-items:center;width:105px;flex-shrink:0}'
+    +'.qr{width:90px;height:90px}'
+    +'.lt{font-size:9.5pt;line-height:1.65;margin:12px 0;text-align:justify}'
+    +'.vb{background:#22c55e;color:#fff;padding:5px 14px;border-radius:4px;font-size:10.5pt;font-weight:bold;display:inline-block;margin-bottom:10px}'
+    +'.ts{display:flex;justify-content:space-between;align-items:flex-end;margin-top:20px;padding:0 8px}'
+    +'.ti{text-align:center;min-width:200px;display:flex;flex-direction:column;align-items:center;position:relative}'
+    +'.tt{font-size:11pt;font-weight:bold;text-decoration:underline;margin-bottom:70px;width:100%;text-align:center}'
+    +'.tn{font-size:11pt;font-weight:bold;border-bottom:1.5px solid #000;padding-bottom:2px;display:inline-block;min-width:175px;text-align:center}'
+    +'.tp{font-size:9.5pt;margin-top:3px;text-align:center}'
+    +'.td{font-size:10pt;margin-bottom:4px;text-align:center;width:100%}'
+    +'@media print{.no-print{display:none!important}}';
+
+  var printHtml='<!DOCTYPE html><html><head><meta charset="UTF-8">'
+    +'<title>Bukti Pendaftaran</title>'
+    +'<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>'
+    +'<style>'+css+'</style></head><body>'
+    +'<div class="page">'
+    +'<div class="kop">'+logoHtml
+    +'<div class="kop-text">'
+    +'<div class="k1">Bukti Registrasi Pendaftaran</div>'
+    +'<div class="k2">Olimpiade Olahraga Siswa Nasional (O2SN)</div>'
+    +'<div class="k3">Tingkat Kecamatan Cigombong Kabupaten Bogor</div>'
+    +'<div class="k3">Tahun '+yr+'</div>'
+    +'</div></div>'
+    +'<div class="cs">'
+    +'<div class="dt">'+dataRows+'</div>'
+    +'<div class="rs">'
+    +'<div class="pb">'+photoHtml+'</div>'
+    +'<div style="font-size:7pt;color:#555;margin-bottom:2px;text-align:center">Scan verifikasi</div>'
+    +'<div class="qr" id="qr-print"></div>'
+    +'<div style="font-size:7pt;font-weight:bold;text-align:center;margin-top:2px">'+regCode+'</div>'
+    +'</div></div>'
+    +'<div class="lt"><u><strong>Bukti pendaftaran ini salah satu persyaratan yang sah</strong></u> dan <u><strong>sudah terverifikasi</strong></u> oleh panitia untuk mengikuti Olimpiade Olahraga Siswa Nasional O2SN Tingkat Kecamatan Cigombong Kabupaten Bogor.</div>'
+    +'<div style="text-align:center;margin-bottom:8px"><span class="vb">&#10003; SUDAH TERVERIFIKASI</span></div>'
+    +'<div style="text-align:right;font-size:10pt;margin-bottom:4px;padding-right:8px">'+tglStr+'</div>'
+    +'<div class="ts">'
+    +'<div class="ti"><div class="tt">Koordinator</div><span class="tn">('+esc(koordinatorName)+')</span><div class="tp">NIP. '+(koordinatorNip||'-')+'</div></div>'
+    +'<div class="ti" style="position:relative"><div class="tt">Ketua Panitia</div>'+ketuaTtdHtml+'<span class="tn">('+esc(ketuaName)+')</span><div class="tp">NIP. '+esc(ketuaNip)+'</div></div>'
+    +'</div>'
+    +'<div class="no-print" style="text-align:center;margin-top:26px;display:flex;gap:12px;justify-content:center">'
+    +'<button onclick="window.print()" style="background:#3b82f6;border:none;color:#fff;padding:12px 28px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold">&#128424; Cetak / Simpan PDF</button>'
+    +'<button onclick="document.getElementById(\'print-overlay\').remove();document.body.style.overflow=\'\';" style="background:#ef4444;border:none;color:#fff;padding:12px 28px;border-radius:8px;cursor:pointer;font-size:14px;font-weight:bold">&#10060; Tutup</button>'
+    +'</div>'
+    +'</div>'
+    +'<script>window.onload=function(){'
+    +'try{new QRCode(document.getElementById("qr-print"),{text:"'+qrData.replace(/"/g,'\\"')+'",width:90,height:90,correctLevel:QRCode.CorrectLevel.M});}catch(e){document.getElementById("qr-print").innerHTML="<div style=\'font-size:7pt;text-align:center;padding:8px\'>'+regCode+'</div>";}'
+    +'};<\/script></body></html>';
+
+
+  // Gunakan overlay inline agar tidak terblokir popup blocker
+  var overlay=document.createElement('div');
+  overlay.id='print-overlay';
+  overlay.style.cssText='position:fixed;inset:0;z-index:99999;background:#fff';
+  var iframe=document.createElement('iframe');
+  iframe.style.cssText='width:100%;height:100%;border:none';
+  overlay.appendChild(iframe);
+  document.body.appendChild(overlay);
+  document.body.style.overflow='hidden';
+  iframe.contentDocument.open();
+  iframe.contentDocument.write(printHtml);
+  iframe.contentDocument.close();
+  // Pasang tombol tutup dari luar juga
+  iframe.contentDocument.querySelector && setTimeout(function(){
+    var closeBtn=iframe.contentDocument.querySelector && iframe.contentDocument.querySelectorAll('button')[1];
+    if(closeBtn){closeBtn.onclick=function(){overlay.remove();document.body.style.overflow='';}}
+  },500);
+}
+
+// ═══════════════════════════════════════════════════════
+// ADMIN
+// ═══════════════════════════════════════════════════════
+function renderAdmin(){
+  APP.currentPage='admin';
+  const app=document.getElementById('app');
+  app.innerHTML=`
+  <div style="height:100vh;display:flex;flex-direction:column;overflow:hidden">
+    <!-- Top Bar -->
+    <div style="height:60px;background:rgba(6,15,35,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(139,92,246,.2);display:flex;align-items:center;padding:0 20px;flex-shrink:0;z-index:100">
+      <div style="display:flex;align-items:center;gap:12px;flex:1">
+        <div style="width:38px;height:38px;background:linear-gradient(135deg,#8b5cf6,#7c3aed);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem">🛡️</div>
+        <div>
+          <div style="font-weight:800;font-size:.9rem;color:#a78bfa">Panel Administrator</div>
+          <div style="font-size:.68rem;color:rgba(255,255,255,.4)">O2SN ${APP.config.event_year||'2026'} · Cigombong</div>
+        </div>
+      </div>
+      <button class="btn btn-red btn-sm" onclick="doLogout()"><i data-lucide="log-out" style="width:14px;height:14px"></i> Keluar</button>
+    </div>
+
+    <!-- Body -->
+    <div style="flex:1;display:flex;overflow:hidden">
+      <!-- Sidebar -->
+      <div class="admin-sidebar" style="padding:16px 10px">
+        ${[
+          {id:'overview',icon:'bar-chart-2',label:'Ringkasan'},
+          {id:'students',icon:'users',label:'Data Peserta'},
+          {id:'schools',icon:'school',label:'Data Sekolah'},
+          {id:'recap',icon:'file-text',label:'Rekapitulasi'},
+          {id:'analytics',icon:'trending-up',label:'Analisis'},
+          {id:'settings',icon:'settings',label:'Pengaturan'},
+        ].map(({id,icon,label})=>`
+          <button class="sidebar-btn ${id==='overview'?'active':''}" id="nav-${id}" onclick="adminTab('${id}')">
+            <i data-lucide="${icon}" style="width:17px;height:17px;flex-shrink:0"></i> ${label}
+          </button>`).join('')}
+      </div>
+
+      <!-- Content -->
+      <div style="flex:1;overflow-y:auto;padding:24px" id="admin-content"></div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+  adminTab('overview');
+}
+
+function adminTab(tab){
+  document.querySelectorAll('.sidebar-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('nav-'+tab)?.classList.add('active');
+  const c=document.getElementById('admin-content'); if(!c)return;
+  if(tab==='overview')renderOverview(c);
+  else if(tab==='students')renderStudents(c);
+  else if(tab==='schools')renderSchools(c);
+  else if(tab==='recap')renderRecap(c);
+  else if(tab==='analytics')renderAnalytics(c);
+  else if(tab==='settings')renderSettings(c);
+}
+
+// ── Overview ──
+function renderOverview(c){
+  const total=APP.students.length, ver=APP.students.filter(s=>s.verified==='true').length, pend=total-ver;
+  const verPct=total>0?Math.round(ver/total*100):0;
+  c.innerHTML=`
+  <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:20px">📊 Ringkasan Dashboard</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:28px">
+    ${[
+      {l:'Total Sekolah',v:APP.schools.length,c:'#60a5fa',e:'🏫'},
+      {l:'Total Peserta',v:total,c:'#34d399',e:'👥'},
+      {l:'Terverifikasi',v:ver,c:'#a78bfa',e:'✅'},
+      {l:'Menunggu',v:pend,c:'#fbbf24',e:'⏳'}
+    ].map(s=>`<div class="stat-card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:1.8rem">${s.e}</span><span style="font-size:2.2rem;font-weight:900;color:${s.c}">${s.v}</span></div><div style="font-weight:700;font-size:.88rem">${s.l}</div></div>`).join('')}
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="glass" style="padding:20px">
+      <h3 style="font-size:1rem;font-weight:800;margin-bottom:16px">📈 Tingkat Verifikasi</h3>
+      <div style="font-size:2.8rem;font-weight:900;color:#818cf8;margin-bottom:8px">${verPct}%</div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${verPct}%"></div></div>
+      <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-top:8px">${ver} dari ${total} peserta terverifikasi</div>
+    </div>
+    <div class="glass" style="padding:20px">
+      <h3 style="font-size:1rem;font-weight:800;margin-bottom:16px">🏅 Per Cabang Olahraga</h3>
+      ${Object.entries(SPORTS).map(([name,s])=>{
+        const cnt=APP.students.filter(st=>st.sport===name).length;
+        const pct=total>0?Math.round(cnt/total*100):0;
+        return `<div style="margin-bottom:10px">
+          <div style="display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:4px">
+            <span>${s.emoji} ${name}</span><span style="font-weight:700">${cnt}</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+// ── Students ──
+function renderStudents(c){
+  c.innerHTML=`
+  <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:20px">👥 Data Peserta (${APP.students.length})</h2>
+  <div class="glass" style="overflow:hidden">
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>Nama</th><th>Sekolah</th><th>Cabang</th><th>Kategori</th><th>Kelas</th><th>Status</th><th>Tgl Daftar</th><th>Berkas</th><th>Aksi</th></tr></thead>
+        <tbody>
+          ${APP.students.length===0
+            ? `<tr><td colspan="10" style="text-align:center;padding:40px;color:rgba(255,255,255,.3)">Tidak ada data peserta</td></tr>`
+            : APP.students.map((s,i)=>{
+                const berkasCount=['photo','kk','akta','rapot','surat'].filter(f=>!!s[f]).length;
+                return `
+                <tr>
+                  <td style="color:rgba(255,255,255,.4)">${i+1}</td>
+                  <td><div style="font-weight:700">${esc(s.student_name)}</div></td>
+                  <td style="font-size:.76rem;color:rgba(255,255,255,.6)">${esc(s.school_name)}</td>
+                  <td><span style="display:flex;align-items:center;gap:4px">${SPORTS[s.sport]?.emoji||''} ${esc(s.sport)}</span></td>
+                  <td><span class="badge ${s.sport_gender==='Putra'?'badge-blue':'badge-red'}">${s.sport_gender}</span></td>
+                  <td style="text-align:center">${s.grade}</td>
+                  <td>${s.verified==='true'
+                    ? `<span class="badge badge-green">✅ Valid</span>`
+                    : `<span class="badge badge-yellow">⏳ Pending</span>`}</td>
+                  <td style="font-size:.72rem;color:rgba(255,255,255,.45)">${fmtDateShort(s.reg_date)}</td>
+                  <td>
+                    <div style="display:flex;gap:3px;flex-wrap:wrap">
+                      ${['photo','kk','akta','rapot','surat'].map(f=>s[f]
+                        ? `<button title="${{photo:'Foto',kk:'KK',akta:'Akta',rapot:'Rapor',surat:'Surat'}[f]}" onclick="viewBerkas('${s.__backendId}','${f}')" style="background:rgba(59,130,246,.25);border:1px solid rgba(59,130,246,.4);border-radius:5px;cursor:pointer;padding:3px 5px;font-size:.65rem;color:#93c5fd;display:flex;align-items:center;gap:2px"><i data-lucide="eye" style="width:10px;height:10px"></i> ${{photo:'📷',kk:'🏠',akta:'📄',rapot:'📚',surat:'✅'}[f]}</button>`
+                        : `<span title="${{photo:'Foto',kk:'KK',akta:'Akta',rapot:'Rapor',surat:'Surat'}[f]}" style="background:rgba(255,255,255,.06);border-radius:5px;padding:3px 5px;font-size:.65rem;color:rgba(255,255,255,.25)">${{photo:'📷',kk:'🏠',akta:'📄',rapot:'📚',surat:'✅'}[f]}</span>`
+                      ).join('')}
+                    </div>
+                    <div style="font-size:.68rem;color:rgba(255,255,255,.35);margin-top:3px">${berkasCount}/5 berkas</div>
+                  </td>
+                  <td>
+                    <div style="display:flex;gap:4px;flex-wrap:wrap">
+                      <button class="btn btn-sm btn-blue" onclick="adminReviewStudent('${s.__backendId}')"><i data-lucide="eye" style="width:11px;height:11px"></i> Review</button>
+                      ${s.verified!=='true'
+                        ? `<button class="btn btn-sm btn-green" onclick="confirmValidate('${s.__backendId}','${esc(s.student_name)}')"><i data-lucide="check" style="width:11px;height:11px"></i> Validasi</button>`
+                        : `<button class="btn btn-sm" style="background:linear-gradient(135deg,#0ea5e9,#0284c7);color:#fff;box-shadow:0 4px 10px rgba(14,165,233,.3)" onclick="printBukti('${s.__backendId}')"><i data-lucide="printer" style="width:11px;height:11px"></i> Cetak</button>`}
+                      <button class="btn btn-sm btn-red" onclick="confirmDelete('peserta','${s.__backendId}','${esc(s.student_name)}')"><i data-lucide="trash-2" style="width:11px;height:11px"></i></button>
+                    </div>
+                  </td>
+                </tr>`;
+              }).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+function adminReviewStudent(id){
+  const s=APP.students.find(st=>st.__backendId===id); if(!s)return;
+  const berkasItems=[
+    {key:'photo',label:'Foto 2×3',icon:'📷'},
+    {key:'kk',label:'Kartu Keluarga',icon:'🏠'},
+    {key:'akta',label:'Akta Kelahiran',icon:'📄'},
+    {key:'rapot',label:'Rapor',icon:'📚'},
+    {key:'surat',label:'Surat Aktif',icon:'✅'}
+  ];
+  const html=`
+  <div class="modal-overlay" id="admin-review-modal" style="align-items:flex-start">
+    <div class="modal-box" style="max-width:800px;padding:28px;margin:20px auto">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <h2 style="font-size:1.2rem;font-weight:800">📋 Review Peserta – Admin</h2>
+        <button onclick="closeModal('admin-review-modal')" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer"><i data-lucide="x" style="width:22px;height:22px"></i></button>
+      </div>
+      <div class="glass-blue" style="padding:16px;margin-bottom:18px">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;font-size:.83rem">
+          ${[['Nama',s.student_name],['Cabang',`${SPORTS[s.sport]?.emoji||''} ${s.sport}`],['Kategori',s.sport_gender],['Kelas',s.grade],['Sekolah',s.school_name],['TTL',`${s.birth_place} / ${fmtDateShort(s.birth_date)}`],['Koordinator',s.teacher_name],['HP Koord.',s.teacher_phone]].map(([k,v])=>`
+          <div><span style="color:rgba(255,255,255,.45);font-size:.68rem;display:block;font-weight:700">${k}</span><div style="font-weight:700;color:#93c5fd">${esc(v)}</div></div>`).join('')}
+        </div>
+      </div>
+      <h3 style="font-size:.95rem;font-weight:800;margin-bottom:14px">📎 Berkas yang Diupload</h3>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:20px">
+        ${berkasItems.map(b=>{
+          const hasFile=!!s[b.key];
+          return `<div class="glass" style="overflow:hidden;border-radius:12px">
+            <div style="padding:12px;text-align:center">
+              <div style="font-size:1.8rem;margin-bottom:5px">${b.icon}</div>
+              <div style="font-size:.72rem;font-weight:700;color:rgba(255,255,255,.8)">${b.label}</div>
+            </div>
+            ${hasFile
+              ? `<div class="file-thumb" style="height:90px;border-radius:0;border-top:1px solid rgba(59,130,246,.2)">
+                  <img src="${s[b.key]}" style="width:100%;height:100%;object-fit:cover"/>
+                  <div class="overlay">
+                    <button type="button" class="file-action-btn" onclick="viewBerkas('${id}','${b.key}')"><i data-lucide="eye" style="width:14px;height:14px"></i></button>
+                  </div>
+                </div>
+                <div style="text-align:center;padding:5px;font-size:.65rem;color:#34d399;font-weight:700">✓ Ada</div>`
+              : `<div style="height:90px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:.75rem;font-weight:700;border-top:1px solid rgba(255,255,255,.06)">Tidak ada</div>`}
+          </div>`;
+        }).join('')}
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal('admin-review-modal')">Tutup</button>
+        ${s.verified!=='true'
+          ? `<button class="btn btn-green" style="flex:1;justify-content:center" onclick="closeModal('admin-review-modal');confirmValidate('${s.__backendId}','${esc(s.student_name)}')"><i data-lucide="check-circle" style="width:16px;height:16px"></i> Validasi Peserta</button>`
+          : `<button class="btn btn-blue" style="flex:1;justify-content:center" onclick="closeModal('admin-review-modal');printBukti('${s.__backendId}')"><i data-lucide="printer" style="width:16px;height:16px"></i> Cetak Bukti</button>`}
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html); lucide.createIcons();
+}
+
+// ── Schools ──
+function renderSchools(c){
+  c.innerHTML=`
+  <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:20px">🏫 Data Sekolah (${APP.schools.length})</h2>
+  <div class="glass" style="overflow:hidden">
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead><tr><th>#</th><th>Nama Sekolah</th><th>NPSN</th><th>Kecamatan</th><th>Peserta</th><th>Tgl Daftar</th><th>Aksi</th></tr></thead>
+        <tbody>
+          ${APP.schools.length===0
+            ? `<tr><td colspan="7" style="text-align:center;padding:40px;color:rgba(255,255,255,.3)">Belum ada sekolah</td></tr>`
+            : APP.schools.map((s,i)=>{
+                const cnt=APP.students.filter(st=>st.coordinator_npsn===s.npsn).length;
+                return `<tr>
+                  <td style="color:rgba(255,255,255,.4)">${i+1}</td>
+                  <td style="font-weight:700">${esc(s.school_name)}</td>
+                  <td><code style="background:rgba(255,255,255,.08);padding:2px 8px;border-radius:4px">${esc(s.npsn)}</code></td>
+                  <td>${esc(s.kecamatan)}</td>
+                  <td><span class="badge badge-blue">${cnt} peserta</span></td>
+                  <td style="font-size:.75rem;color:rgba(255,255,255,.45)">${fmtDateShort(s.reg_date)}</td>
+                  <td>
+                    <div style="display:flex;gap:4px">
+                      <button class="btn btn-sm btn-yellow" onclick="confirmReset('${s.__backendId}','${esc(s.school_name)}')"><i data-lucide="key" style="width:11px;height:11px"></i> Reset PW</button>
+                      <button class="btn btn-sm btn-red" onclick="confirmDelete('sekolah','${s.__backendId}','${esc(s.school_name)}')"><i data-lucide="trash-2" style="width:11px;height:11px"></i></button>
+                    </div>
+                  </td>
+                </tr>`;
+              }).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+// ── Recap ──
+// State filter per cabang (visible/hidden)
+window._recapFilter={};
+window._recapFilterStatus={};
+
+function toggleRecapDetail(sport){
+  const el=document.getElementById('recap-detail-'+sport.replace(/\s/g,'_'));
+  if(!el)return;
+  const isHidden=el.style.display==='none';
+  el.style.display=isHidden?'block':'none';
+  const btn=document.getElementById('recap-toggle-'+sport.replace(/\s/g,'_'));
+  if(btn){btn.innerHTML=isHidden?'<i data-lucide="eye-off" style="width:13px;height:13px"></i> Sembunyikan':'<i data-lucide="eye" style="width:13px;height:13px"></i> Tampilkan';}
+  lucide.createIcons();
+}
+
+function filterRecapRows(sport){
+  const key=sport.replace(/\s/g,'_');
+  const val=(document.getElementById('recap-filter-'+key)?.value||'').toLowerCase();
+  const status=document.getElementById('recap-fstatus-'+key)?.value||'';
+  const kategori=document.getElementById('recap-fkat-'+key)?.value||'';
+  const tbody=document.getElementById('recap-tbody-'+key);
+  if(!tbody)return;
+  let visIdx=1;
+  Array.from(tbody.querySelectorAll('tr[data-row]')).forEach(tr=>{
+    const nama=(tr.dataset.nama||'').toLowerCase();
+    const sekolah=(tr.dataset.sekolah||'').toLowerCase();
+    const sts=tr.dataset.status||'';
+    const kat=tr.dataset.kat||'';
+    const show=(!val||(nama.includes(val)||sekolah.includes(val)))&&(!status||sts===status)&&(!kategori||kat===kategori);
+    tr.style.display=show?'':'none';
+    if(show){tr.querySelector('.row-no').textContent=visIdx++;}
+  });
+}
+
+function downloadExcelSport(sport){
+  if(typeof XLSX==='undefined'){ showToast('Library Excel belum dimuat','warning'); return; }
+  const sportStudents=APP.students.filter(st=>st.sport===sport).sort((a,b)=>a.school_name.localeCompare(b.school_name));
+  const wb=XLSX.utils.book_new();
+  const rows=[
+    ['REKAPITULASI PESERTA O2SN - CABANG: '+sport.toUpperCase()],
+    ['Tanggal Cetak: '+new Date().toLocaleDateString('id-ID')],
+    [],
+    ['#','Nama Peserta','NISN','Asal Sekolah','Kategori','Kelas','Tempat Lahir','Tanggal Lahir','Jenis Kelamin','Koordinator','Status'],
+    ...sportStudents.map((s,i)=>[i+1,s.student_name,s.nisn||'-',s.school_name,s.sport_gender,s.grade,s.birth_place,new Date(s.birth_date).toLocaleDateString('id-ID'),s.gender,s.teacher_name,s.verified==='true'?'Terverifikasi':'Menunggu'])
+  ];
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(rows),sport.substring(0,28));
+  XLSX.writeFile(wb,'O2SN-'+sport.replace(/[^a-zA-Z0-9]/g,'_')+'.xlsx');
+  showToast('Excel '+sport+' berhasil diunduh ✅');
+}
+
+function printRecapSport(sport){
+  const sportStudents=APP.students.filter(st=>st.sport===sport).sort((a,b)=>a.school_name.localeCompare(b.school_name));
+  const yr=APP.config.event_year||'2026';
+  const logoUrl=APP.config.logo_url||'';
+  const logoHtml=logoUrl?'<img style="width:65px;height:65px;object-fit:contain" src="'+logoUrl+'" alt="Logo"/>':'<div style="width:65px;height:65px;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;font-size:1.6rem">🏆</div>';
+  var now=new Date();
+  var bulan=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+  var tglStr=now.getDate()+' '+bulan[now.getMonth()]+' '+now.getFullYear();
+  var rows=sportStudents.map((s,i)=>'<tr><td>'+(i+1)+'</td><td>'+esc(s.student_name)+'</td><td>'+esc(s.nisn||'-')+'</td><td>'+esc(s.school_name)+'</td><td>'+s.sport_gender+'</td><td>'+s.grade+'</td><td>'+(s.verified==='true'?'✅ Terverifikasi':'⏳ Menunggu')+'</td></tr>').join('');
+  var closeScript='<scr'+'ipt>function closePrint(){window.parent.document.getElementById("recap-print-overlay").remove();window.parent.document.body.style.overflow="";}window.closePrint=closePrint;<\/scr'+'ipt>';
+  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Rekap '+sport+'</title><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Arial,sans-serif;font-size:10pt;color:#000;background:#fff}@page{size:A4;margin:15mm 18mm}.page{width:100%;min-height:100vh}.kop{display:flex;align-items:center;gap:14px;border-bottom:3px double #000;padding-bottom:10px;margin-bottom:14px}.kop-text{flex:1;text-align:center}.k1{font-size:13pt;font-weight:bold;text-transform:uppercase;margin-bottom:2px}.k2{font-size:11pt;font-weight:bold;text-transform:uppercase;margin-bottom:2px}.k3{font-size:10pt;font-weight:bold}table{width:100%;border-collapse:collapse;margin-top:8px}th{background:#1a3a6e;color:#fff;padding:7px 10px;text-align:left;font-size:9.5pt}td{padding:6px 10px;border-bottom:1px solid #e0e0e0;font-size:9pt}tr:nth-child(even) td{background:#f5f8ff}.footer{margin-top:18px;text-align:right;font-size:9pt}.no-print{text-align:center;margin-top:20px;display:flex;gap:10px;justify-content:center}@media print{.no-print{display:none}}</style>'+closeScript+'</head><body><div class="page"><div class="kop">'+logoHtml+'<div class="kop-text"><div class="k1">Rekapitulasi Peserta O2SN Tahun '+yr+'</div><div class="k2">Tingkat Kecamatan Cigombong Kabupaten Bogor</div><div class="k3">Cabang Olahraga: '+sport+'</div></div></div><table><thead><tr><th style="width:30px">#</th><th>Nama Peserta</th><th>NISN</th><th>Asal Sekolah</th><th>Kategori</th><th>Kelas</th><th>Status</th></tr></thead><tbody>'+rows+'</tbody></table><div class="footer">Dicetak: Cigombong, '+tglStr+'</div><div class="no-print"><button onclick="window.print()" style="background:#3b82f6;border:none;color:#fff;padding:10px 24px;border-radius:8px;cursor:pointer;font-weight:bold">&#128424; Cetak / PDF</button><button onclick="closePrint()" style="background:#ef4444;border:none;color:#fff;padding:10px 24px;border-radius:8px;cursor:pointer;font-weight:bold">&#10005; Tutup</button></div></div></body></html>';
+  var ov=document.createElement('div');ov.id='recap-print-overlay';ov.style.cssText='position:fixed;inset:0;z-index:99999;background:#fff';
+  var iframe=document.createElement('iframe');iframe.style.cssText='width:100%;height:100%;border:none';
+  ov.appendChild(iframe);document.body.appendChild(ov);document.body.style.overflow='hidden';
+  iframe.contentDocument.open();iframe.contentDocument.write(html);iframe.contentDocument.close();
+}
+
+function openRecapReviewModal(sport){
+  const sportStudents=APP.students.filter(st=>st.sport===sport).sort((a,b)=>a.school_name.localeCompare(b.school_name));
+  const s=SPORTS[sport];
+  const html=`
+  <div class="modal-overlay" id="recap-review-modal" style="align-items:flex-start">
+    <div class="modal-box" style="max-width:860px;padding:28px;margin:20px auto">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <h2 style="font-size:1.2rem;font-weight:800;display:flex;align-items:center;gap:8px">
+          <span style="font-size:1.5rem">${s.emoji}</span> ${sport}
+          <span class="badge badge-blue">${sportStudents.length} peserta</span>
+        </h2>
+        <button onclick="closeModal('recap-review-modal')" style="background:none;border:none;color:rgba(255,255,255,.5);cursor:pointer"><i data-lucide="x" style="width:22px;height:22px"></i></button>
+      </div>
+      <!-- Filter dalam modal -->
+      <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap">
+        <input id="modal-filter-nama" class="form-input" style="max-width:200px;padding:8px 12px" placeholder="🔍 Cari nama/sekolah..." oninput="filterModalRows()"/>
+        <select id="modal-filter-kat" class="form-input" style="max-width:130px;padding:8px 12px" onchange="filterModalRows()">
+          <option value="">Semua Kategori</option><option>Putra</option><option>Putri</option>
+        </select>
+        <select id="modal-filter-status" class="form-input" style="max-width:150px;padding:8px 12px" onchange="filterModalRows()">
+          <option value="">Semua Status</option><option value="true">Terverifikasi</option><option value="false">Menunggu</option>
+        </select>
+        <div style="margin-left:auto;display:flex;gap:8px">
+          <button class="btn btn-green btn-sm" onclick="downloadExcelSport('${sport}')"><i data-lucide="download" style="width:13px;height:13px"></i> Excel</button>
+          <button class="btn btn-blue btn-sm" onclick="printRecapSport('${sport}')"><i data-lucide="printer" style="width:13px;height:13px"></i> Cetak</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table" style="font-size:.8rem">
+          <thead><tr><th style="width:32px">#</th><th>Nama Peserta</th><th>NISN</th><th>Asal Sekolah</th><th>Kategori</th><th>Kelas</th><th>Status</th><th>Aksi</th></tr></thead>
+          <tbody id="modal-recap-tbody">
+            ${sportStudents.length===0
+              ? `<tr><td colspan="8" style="text-align:center;padding:30px;color:rgba(255,255,255,.3)">Belum ada peserta</td></tr>`
+              : sportStudents.map((st,i)=>`
+            <tr data-row="1" data-nama="${esc(st.student_name)}" data-sekolah="${esc(st.school_name)}" data-kat="${st.sport_gender}" data-status="${st.verified}">
+              <td class="row-no" style="color:rgba(255,255,255,.4)">${i+1}</td>
+              <td style="font-weight:700">${esc(st.student_name)}</td>
+              <td style="font-size:.75rem;color:rgba(255,255,255,.5)">${esc(st.nisn||'-')}</td>
+              <td style="font-size:.76rem;color:rgba(255,255,255,.65)">${esc(st.school_name)}</td>
+              <td><span class="badge ${st.sport_gender==='Putra'?'badge-blue':'badge-red'}">${st.sport_gender==='Putra'?'👦':'👧'} ${st.sport_gender}</span></td>
+              <td>${st.grade}</td>
+              <td>${st.verified==='true'?'<span class="badge badge-green">✅ Valid</span>':'<span class="badge badge-yellow">⏳ Menunggu</span>'}</td>
+              <td><button class="btn btn-sm btn-blue" onclick="adminReviewStudent('${st.__backendId}')"><i data-lucide="eye" style="width:11px;height:11px"></i> Review</button></td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:16px;display:flex;justify-content:flex-end">
+        <button class="btn btn-ghost" onclick="closeModal('recap-review-modal')">Tutup</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html); lucide.createIcons();
+}
+
+function filterModalRows(){
+  const val=(document.getElementById('modal-filter-nama')?.value||'').toLowerCase();
+  const kat=document.getElementById('modal-filter-kat')?.value||'';
+  const status=document.getElementById('modal-filter-status')?.value||'';
+  const tbody=document.getElementById('modal-recap-tbody');
+  if(!tbody)return;
+  let idx=1;
+  Array.from(tbody.querySelectorAll('tr[data-row]')).forEach(tr=>{
+    const nama=(tr.dataset.nama||'').toLowerCase();
+    const sekolah=(tr.dataset.sekolah||'').toLowerCase();
+    const show=(!val||(nama.includes(val)||sekolah.includes(val)))&&(!kat||tr.dataset.kat===kat)&&(!status||tr.dataset.status===status);
+    tr.style.display=show?'':'none';
+    if(show){tr.querySelector('.row-no').textContent=idx++;}
+  });
+}
+
+function renderRecap(c){
+  const byCategory={};
+  Object.keys(SPORTS).forEach(s=>{ byCategory[s]={putra:0,putri:0,verified:0}; });
+  APP.students.forEach(s=>{
+    if(byCategory[s.sport]){
+      if(s.sport_gender==='Putra')byCategory[s.sport].putra++;
+      else byCategory[s.sport].putri++;
+      if(s.verified==='true')byCategory[s.sport].verified++;
+    }
+  });
+  c.innerHTML=`
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px">
+    <h2 style="font-size:1.2rem;font-weight:800">📋 Rekapitulasi Peserta</h2>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-green btn-sm" onclick="downloadExcel()"><i data-lucide="download" style="width:14px;height:14px"></i> Download Excel</button>
+      <button class="btn btn-blue btn-sm" onclick="window.print()"><i data-lucide="printer" style="width:14px;height:14px"></i> Cetak</button>
+    </div>
+  </div>
+  <!-- Tabel Ringkasan -->
+  <div class="glass" style="overflow:hidden;margin-bottom:24px">
+    <table class="data-table">
+      <thead><tr><th>Cabang Olahraga</th><th style="text-align:center">Putra</th><th style="text-align:center">Putri</th><th style="text-align:center">Total</th><th style="text-align:center">Terverifikasi</th><th style="text-align:center">%</th></tr></thead>
+      <tbody>
+        ${Object.entries(byCategory).map(([sport,d])=>{
+          const total=d.putra+d.putri;
+          const pct=total>0?Math.round(d.verified/total*100):0;
+          return `<tr>
+            <td style="font-weight:700"><span style="display:flex;align-items:center;gap:8px">${SPORTS[sport]?.emoji||''} ${sport}</span></td>
+            <td style="text-align:center">${d.putra}</td>
+            <td style="text-align:center">${d.putri}</td>
+            <td style="text-align:center;font-weight:800">${total}</td>
+            <td style="text-align:center"><span class="badge badge-green">${d.verified}</span></td>
+            <td style="text-align:center"><span class="badge badge-blue">${pct}%</span></td>
+          </tr>`;
+        }).join('')}
+        <tr style="background:rgba(59,130,246,.1);font-weight:800">
+          <td>TOTAL KESELURUHAN</td>
+          <td style="text-align:center">${Object.values(byCategory).reduce((a,b)=>a+b.putra,0)}</td>
+          <td style="text-align:center">${Object.values(byCategory).reduce((a,b)=>a+b.putri,0)}</td>
+          <td style="text-align:center">${APP.students.length}</td>
+          <td style="text-align:center"><span class="badge badge-green">${APP.students.filter(s=>s.verified==='true').length}</span></td>
+          <td style="text-align:center"><span class="badge badge-blue">${APP.students.length>0?Math.round(APP.students.filter(s=>s.verified==='true').length/APP.students.length*100):0}%</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Detail per Cabang -->
+  ${Object.entries(SPORTS).map(([sport,s])=>{
+    const sportStudents=APP.students.filter(st=>st.sport===sport).sort((a,b)=>a.school_name.localeCompare(b.school_name));
+    if(sportStudents.length===0)return'';
+    const key=sport.replace(/\s/g,'_');
+    return `<div class="glass" style="overflow:hidden;margin-bottom:16px">
+      <!-- Header cabang -->
+      <div style="padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="font-size:1.4rem">${s.emoji}</span>
+        <h3 style="font-size:1rem;font-weight:800;margin:0">${sport}</h3>
+        <span class="badge badge-blue">${sportStudents.length} peserta</span>
+        <div style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap">
+          <button id="recap-toggle-${key}" class="btn btn-sm btn-ghost" onclick="toggleRecapDetail('${sport}')">
+            <i data-lucide="eye-off" style="width:13px;height:13px"></i> Sembunyikan
+          </button>
+          <button class="btn btn-sm" style="background:rgba(16,185,129,.25);border:1px solid rgba(16,185,129,.4);color:#34d399" onclick="openRecapReviewModal('${sport}')">
+            <i data-lucide="eye" style="width:13px;height:13px"></i> Review
+          </button>
+          <button class="btn btn-sm" style="background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.3);color:#4ade80" onclick="downloadExcelSport('${sport}')">
+            <i data-lucide="download" style="width:13px;height:13px"></i> Excel
+          </button>
+          <button class="btn btn-sm" style="background:rgba(59,130,246,.2);border:1px solid rgba(59,130,246,.35);color:#93c5fd" onclick="printRecapSport('${sport}')">
+            <i data-lucide="printer" style="width:13px;height:13px"></i> Cetak
+          </button>
+        </div>
+      </div>
+      <!-- Detail panel -->
+      <div id="recap-detail-${key}">
+        <div style="overflow-x:auto">
+          <table class="data-table" style="font-size:.78rem">
+            <thead><tr><th style="width:32px">#</th><th>Nama</th><th>NISN</th><th>Sekolah</th><th>Kategori</th><th>Kelas</th><th>Status</th><th>Aksi</th></tr></thead>
+            <tbody id="recap-tbody-${key}">
+              ${sportStudents.map((st,i)=>`
+              <tr data-row="1" data-nama="${esc(st.student_name)}" data-sekolah="${esc(st.school_name)}" data-kat="${st.sport_gender}" data-status="${st.verified}">
+                <td class="row-no" style="color:rgba(255,255,255,.4)">${i+1}</td>
+                <td style="font-weight:700">${esc(st.student_name)}</td>
+                <td style="font-size:.75rem;color:rgba(255,255,255,.5)">${esc(st.nisn||'-')}</td>
+                <td style="font-size:.76rem;color:rgba(255,255,255,.65)">${esc(st.school_name)}</td>
+                <td><span class="badge ${st.sport_gender==='Putra'?'badge-blue':'badge-red'}">${st.sport_gender==='Putra'?'👦':'👧'} ${st.sport_gender}</span></td>
+                <td>${st.grade}</td>
+                <td>${st.verified==='true'?'<span class="badge badge-green">✅ Valid</span>':'<span class="badge badge-yellow">⏳ Menunggu</span>'}</td>
+                <td>
+                  <button class="btn btn-sm btn-blue" onclick="adminReviewStudent('${st.__backendId}')">
+                    <i data-lucide="eye" style="width:11px;height:11px"></i> Review
+                  </button>
+                </td>
+              </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>`;
+  }).join('')}`;
+  lucide.createIcons();
+}
+
+// ── Analytics ──
+function renderAnalytics(c){
+  const bySchool={};
+  APP.students.forEach(s=>{
+    if(!bySchool[s.school_name])bySchool[s.school_name]={total:0,verified:0};
+    bySchool[s.school_name].total++;
+    if(s.verified==='true')bySchool[s.school_name].verified++;
+  });
+  const sorted=Object.entries(bySchool).sort((a,b)=>b[1].total-a[1].total);
+  const verPct=APP.students.length>0?Math.round(APP.students.filter(s=>s.verified==='true').length/APP.students.length*100):0;
+
+  c.innerHTML=`
+  <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:20px">📈 Analisis Data</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:24px">
+    <div class="stat-card">
+      <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:4px">Tingkat Verifikasi</div>
+      <div style="font-size:2.4rem;font-weight:900;color:#818cf8">${verPct}%</div>
+      <div class="progress-bar" style="margin-top:8px"><div class="progress-fill" style="width:${verPct}%"></div></div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:4px">Rata-rata Peserta/Sekolah</div>
+      <div style="font-size:2.4rem;font-weight:900;color:#34d399">${APP.schools.length>0?(APP.students.length/APP.schools.length).toFixed(1):0}</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.4)">peserta per sekolah</div>
+    </div>
+    <div class="stat-card">
+      <div style="font-size:.8rem;color:rgba(255,255,255,.5);margin-bottom:4px">Sekolah Aktif</div>
+      <div style="font-size:2.4rem;font-weight:900;color:#60a5fa">${APP.schools.length}</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="glass" style="padding:0;overflow:hidden">
+      <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08)"><h3 style="font-size:1rem;font-weight:800;margin:0">🏅 Distribusi per Cabang</h3></div>
+      <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+        ${Object.entries(SPORTS).map(([name,s])=>{
+          const cnt=APP.students.filter(st=>st.sport===name).length;
+          const pct=APP.students.length>0?Math.round(cnt/APP.students.length*100):0;
+          return `<div>
+            <div style="display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:5px">
+              <span>${s.emoji} ${name}</span><span style="font-weight:700">${cnt} (${pct}%)</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="glass" style="padding:0;overflow:hidden">
+      <div style="padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.08)"><h3 style="font-size:1rem;font-weight:800;margin:0">🏫 Rekap per Sekolah</h3></div>
+      <div style="overflow-x:auto">
+        <table class="data-table">
+          <thead><tr><th>#</th><th>Sekolah</th><th>Total</th><th>Verified</th><th>Pending</th></tr></thead>
+          <tbody>
+            ${sorted.length===0
+              ? `<tr><td colspan="5" style="text-align:center;padding:30px;color:rgba(255,255,255,.3)">Belum ada data</td></tr>`
+              : sorted.map(([school,d],i)=>`<tr>
+                  <td style="color:rgba(255,255,255,.4)">${i+1}</td>
+                  <td style="font-weight:700;font-size:.82rem">${esc(school)}</td>
+                  <td><span class="badge badge-blue">${d.total}</span></td>
+                  <td><span class="badge badge-green">${d.verified}</span></td>
+                  <td><span class="badge badge-yellow">${d.total-d.verified}</span></td>
+                </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+// ── Settings ──
+function renderSettings(c){
+  const cfg=APP.config;
+  const allBerkas=[
+    {key:'photo',label:'Foto Peserta (2×3)',icon:'📷'},
+    {key:'kk',label:'Kartu Keluarga (KK)',icon:'🏠'},
+    {key:'akta',label:'Akta Kelahiran',icon:'📄'},
+    {key:'rapot',label:'Rapor Terakhir',icon:'📚'},
+    {key:'surat',label:'Surat Aktif Sekolah',icon:'✅'},
+  ];
+  const activeBerkas=cfg.berkas_aktif ? JSON.parse(cfg.berkas_aktif) : allBerkas.map(b=>b.key);
+  c.innerHTML=`
+  <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:20px">⚙️ Pengaturan Administrator</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <!-- Panitia -->
+    <div class="glass" style="padding:22px">
+      <h3 style="font-size:1rem;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:6px"><i data-lucide="users" style="width:16px;height:16px;color:#60a5fa"></i> Data Ketua Panitia & Tahun Kegiatan</h3>
+      <div style="margin-bottom:12px"><label class="form-label">Tahun Kegiatan O2SN</label>
+        <input id="set-year" class="form-input" value="${esc(cfg.event_year||'2026')}" placeholder="Contoh: 2027" maxlength="4" type="number" min="2020" max="2099" style="font-size:1.1rem;font-weight:800;color:#60a5fa"/>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.4);margin-top:4px">⚠️ Mengubah tahun akan memperbarui seluruh tampilan website secara otomatis</div>
+      </div>
+      <div style="margin-bottom:12px"><label class="form-label">Nama Ketua Panitia</label><input id="set-ketua" class="form-input" value="${esc(cfg.ketua_panitia)}"/></div>
+      <div style="margin-bottom:16px"><label class="form-label">NIP</label><input id="set-nip" class="form-input" value="${esc(cfg.nip_ketua)}"/></div>
+      <button class="btn btn-green" onclick="saveSettings()" id="save-btn"><i data-lucide="save" style="width:16px;height:16px"></i> Simpan</button>
+    </div>
+
+    <!-- Pengumuman -->
+    <div class="glass" style="padding:22px">
+      <h3 style="font-size:1rem;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:6px"><i data-lucide="megaphone" style="width:16px;height:16px;color:#fbbf24"></i> Informasi & Pengumuman</h3>
+      <div style="margin-bottom:16px"><label class="form-label">Isi Pengumuman / Jadwal</label><textarea id="set-info" class="form-input" style="min-height:100px;resize:vertical">${esc(cfg.informasi_penting)}</textarea></div>
+      <button class="btn btn-yellow" onclick="saveInfo()" id="info-btn"><i data-lucide="save" style="width:16px;height:16px"></i> Simpan Pengumuman</button>
+    </div>
+
+    <!-- Logo Upload -->
+    <div class="glass" style="padding:22px">
+      <h3 style="font-size:1rem;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:6px"><i data-lucide="image" style="width:16px;height:16px;color:#a78bfa"></i> Logo O2SN (untuk Bukti Pendaftaran)</h3>
+      <div style="margin-bottom:12px">
+        ${cfg.logo_url
+          ? `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+              <img src="${cfg.logo_url}" style="width:70px;height:70px;object-fit:contain;background:#fff;border-radius:8px;padding:4px;border:2px solid rgba(59,130,246,.3)"/>
+              <div>
+                <div style="font-size:.82rem;font-weight:700;color:#34d399;margin-bottom:4px">✅ Logo terpasang</div>
+                <button class="btn btn-red btn-sm" onclick="removeLogo()">Hapus Logo</button>
+              </div>
+            </div>`
+          : `<div style="padding:20px;text-align:center;background:rgba(255,255,255,.04);border-radius:10px;border:2px dashed rgba(255,255,255,.15);margin-bottom:12px;color:rgba(255,255,255,.4);font-size:.85rem">Belum ada logo</div>`}
+        <label class="upload-zone" style="cursor:pointer">
+          <input type="file" id="logo-file" accept="image/*" style="display:none" onchange="uploadLogo()"/>
+          <i data-lucide="upload" style="width:16px;height:16px;color:#60a5fa;flex-shrink:0"></i>
+          <span style="font-size:.82rem">Upload Logo (PNG/JPG)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Password Admin -->
+    <div class="glass" style="padding:22px">
+      <h3 style="font-size:1rem;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:6px"><i data-lucide="lock" style="width:16px;height:16px;color:#f87171"></i> Ganti Password Admin</h3>
+      <div style="margin-bottom:12px"><label class="form-label">Password Saat Ini</label><input id="pw-old" type="password" class="form-input" placeholder="Password lama"/></div>
+      <div style="margin-bottom:12px"><label class="form-label">Password Baru</label><input id="pw-new" type="password" class="form-input" placeholder="Min 6 karakter"/></div>
+      <div style="margin-bottom:16px"><label class="form-label">Konfirmasi Password</label><input id="pw-new2" type="password" class="form-input" placeholder="Ulangi password baru"/></div>
+      <button class="btn btn-red" onclick="changeAdminPw()"><i data-lucide="key" style="width:16px;height:16px"></i> Ganti Password</button>
+    </div>
+  </div>
+
+  <!-- Stempel & Tanda Tangan -->
+  <div class="glass" style="padding:22px;margin-top:20px">
+    <h3 style="font-size:1rem;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:6px"><i data-lucide="pen-tool" style="width:16px;height:16px;color:#34d399"></i> Stempel & Tanda Tangan Ketua Panitia</h3>
+    <div style="font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:18px">Upload gambar stempel dan tanda tangan. Akan ditampilkan secara transparan di atas kolom tanda tangan Ketua Panitia pada bukti pendaftaran.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <!-- Tanda Tangan -->
+      <div>
+        <label class="form-label" style="margin-bottom:10px">✍️ Tanda Tangan</label>
+        ${cfg.ttd_url
+          ? `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;background:rgba(255,255,255,.04);border-radius:10px;padding:12px">
+              <img src="${cfg.ttd_url}" style="max-width:140px;max-height:70px;object-fit:contain;background:rgba(255,255,255,.08);border-radius:6px;padding:4px"/>
+              <div>
+                <div style="font-size:.8rem;font-weight:700;color:#34d399;margin-bottom:6px">✅ Tanda tangan terpasang</div>
+                <button class="btn btn-red btn-sm" onclick="removeTtd()"><i data-lucide="trash-2" style="width:12px;height:12px"></i> Hapus</button>
+              </div>
+            </div>`
+          : `<div style="padding:14px;text-align:center;background:rgba(255,255,255,.04);border-radius:10px;border:2px dashed rgba(255,255,255,.12);margin-bottom:12px;color:rgba(255,255,255,.35);font-size:.82rem">Belum ada tanda tangan</div>`}
+        <label class="upload-zone" style="cursor:pointer">
+          <input type="file" id="ttd-file" accept="image/*" style="display:none" onchange="uploadTtd()"/>
+          <i data-lucide="upload" style="width:15px;height:15px;color:#34d399;flex-shrink:0"></i>
+          <span style="font-size:.8rem">Upload Tanda Tangan (PNG transparan direkomendasikan)</span>
+        </label>
+      </div>
+
+      <!-- Stempel -->
+      <div>
+        <label class="form-label" style="margin-bottom:10px">🔴 Stempel / Cap</label>
+        ${cfg.stempel_url
+          ? `<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;background:rgba(255,255,255,.04);border-radius:10px;padding:12px">
+              <img src="${cfg.stempel_url}" style="width:80px;height:80px;object-fit:contain;background:rgba(255,255,255,.08);border-radius:6px;padding:4px"/>
+              <div>
+                <div style="font-size:.8rem;font-weight:700;color:#34d399;margin-bottom:6px">✅ Stempel terpasang</div>
+                <button class="btn btn-red btn-sm" onclick="removeStempel()"><i data-lucide="trash-2" style="width:12px;height:12px"></i> Hapus</button>
+              </div>
+            </div>`
+          : `<div style="padding:14px;text-align:center;background:rgba(255,255,255,.04);border-radius:10px;border:2px dashed rgba(255,255,255,.12);margin-bottom:12px;color:rgba(255,255,255,.35);font-size:.82rem">Belum ada stempel</div>`}
+        <label class="upload-zone" style="cursor:pointer">
+          <input type="file" id="stempel-file" accept="image/*" style="display:none" onchange="uploadStempel()"/>
+          <i data-lucide="upload" style="width:15px;height:15px;color:#a78bfa;flex-shrink:0"></i>
+          <span style="font-size:.8rem">Upload Stempel (PNG transparan direkomendasikan)</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Kontrol ukuran & opacity -->
+    <div style="margin-top:20px;border-top:1px solid rgba(255,255,255,.08);padding-top:18px">
+      <div style="font-size:.88rem;font-weight:800;color:#c4b5fd;margin-bottom:14px;display:flex;align-items:center;gap:6px"><i data-lucide="sliders" style="width:15px;height:15px"></i> Ukuran & Transparansi</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div>
+          <label class="form-label">✍️ Ukuran Tanda Tangan <span id="ttd-size-val" style="color:#34d399">${cfg.ttd_size||120}px</span></label>
+          <input type="range" id="ttd-size" min="60" max="300" value="${cfg.ttd_size||120}" style="width:100%;accent-color:#34d399" oninput="updatePreviewOverlay()"/>
+        </div>
+        <div>
+          <label class="form-label">✍️ Opacity TTD <span id="ttd-opacity-val" style="color:#34d399">${Math.round((cfg.ttd_opacity||0.9)*100)}%</span></label>
+          <input type="range" id="ttd-opacity" min="10" max="100" value="${Math.round((cfg.ttd_opacity||0.9)*100)}" style="width:100%;accent-color:#34d399" oninput="updatePreviewOverlay()"/>
+        </div>
+        <div>
+          <label class="form-label">🔴 Ukuran Stempel <span id="stempel-size-val" style="color:#a78bfa">${cfg.stempel_size||110}px</span></label>
+          <input type="range" id="stempel-size" min="60" max="300" value="${cfg.stempel_size||110}" style="width:100%;accent-color:#a78bfa" oninput="updatePreviewOverlay()"/>
+        </div>
+        <div>
+          <label class="form-label">🔴 Opacity Stempel <span id="stempel-opacity-val" style="color:#a78bfa">${Math.round((cfg.stempel_opacity||0.75)*100)}%</span></label>
+          <input type="range" id="stempel-opacity" min="10" max="100" value="${Math.round((cfg.stempel_opacity||0.75)*100)}" style="width:100%;accent-color:#a78bfa" oninput="updatePreviewOverlay()"/>
+        </div>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:8px">
+        <button class="btn btn-green btn-sm" onclick="saveOverlaySettings()"><i data-lucide="save" style="width:13px;height:13px"></i> Simpan Ukuran & Opacity</button>
+      </div>
+    </div>
+
+    <!-- Pratinjau Interaktif -->
+    ${(cfg.ttd_url||cfg.stempel_url) ? `
+    <div style="margin-top:20px;border-top:1px solid rgba(255,255,255,.08);padding-top:18px">
+      <div style="font-size:.88rem;font-weight:800;color:#60a5fa;margin-bottom:4px;display:flex;align-items:center;gap:6px"><i data-lucide="eye" style="width:15px;height:15px"></i> Pratinjau Posisi di Bukti Pendaftaran</div>
+      <div style="font-size:.75rem;color:rgba(255,255,255,.4);margin-bottom:14px">Geser stempel/TTD langsung di pratinjau untuk mengatur posisi. Klik Simpan Posisi setelah puas.</div>
+      <div id="stamp-preview-wrap" style="background:#f5f5f5;border-radius:12px;padding:0;overflow:hidden;position:relative;width:100%;max-width:480px;margin:0 auto;box-shadow:0 8px 32px rgba(0,0,0,.4)">
+        <!-- Simulasi area tanda tangan dokumen -->
+        <div style="padding:20px 24px 16px;background:#fff;font-family:Arial,sans-serif;color:#000">
+          <div style="border-top:2px solid #888;padding-top:10px;display:flex;justify-content:space-between">
+            <div style="text-align:center;min-width:160px">
+              <div style="font-size:10px;font-weight:bold;text-decoration:underline;margin-bottom:52px">Koordinator</div>
+              <div style="border-bottom:1.5px solid #000;font-size:10px;font-weight:bold;padding-bottom:2px;min-width:140px;text-align:center">(Nama Koordinator)</div>
+              <div style="font-size:9px;margin-top:3px;text-align:center">NIP. -</div>
+            </div>
+            <!-- Area ketua panitia dengan overlay interaktif -->
+            <div id="stamp-area" style="text-align:center;min-width:160px;position:relative;height:120px">
+              <div style="font-size:10px;font-weight:bold;text-decoration:underline;margin-bottom:4px">Ketua Panitia</div>
+              <!-- TTD draggable -->
+              ${cfg.ttd_url ? `<img id="prev-ttd" src="${cfg.ttd_url}" draggable="false"
+                style="position:absolute;width:${cfg.ttd_size||120}px;height:auto;object-fit:contain;
+                opacity:${cfg.ttd_opacity||0.9};cursor:grab;user-select:none;
+                left:${cfg.ttd_x!==undefined?cfg.ttd_x:10}px;top:${cfg.ttd_y!==undefined?cfg.ttd_y:18}px;z-index:2"
+                onmousedown="startDrag(event,'ttd')" ontouchstart="startDragTouch(event,'ttd')"/>` : ''}
+              <!-- Stempel draggable -->
+              ${cfg.stempel_url ? `<img id="prev-stempel" src="${cfg.stempel_url}" draggable="false"
+                style="position:absolute;width:${cfg.stempel_size||110}px;height:auto;object-fit:contain;
+                opacity:${cfg.stempel_opacity||0.75};cursor:grab;user-select:none;
+                left:${cfg.stempel_x!==undefined?cfg.stempel_x:20}px;top:${cfg.stempel_y!==undefined?cfg.stempel_y:30}px;z-index:3"
+                onmousedown="startDrag(event,'stempel')" ontouchstart="startDragTouch(event,'stempel')"/>` : ''}
+              <div style="position:absolute;bottom:0;left:50%;transform:translateX(-50%);border-bottom:1.5px solid #000;font-size:10px;font-weight:bold;padding-bottom:2px;white-space:nowrap">(${esc(APP.config.ketua_panitia||'Ketua Panitia')})</div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#aaa;text-align:center;margin-top:8px">— Pratinjau area tanda tangan —</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-green btn-sm" onclick="saveStampPosition()"><i data-lucide="save" style="width:13px;height:13px"></i> Simpan Posisi</button>
+        <button class="btn btn-ghost btn-sm" onclick="resetStampPosition()"><i data-lucide="rotate-ccw" style="width:13px;height:13px"></i> Reset Posisi</button>
+      </div>
+    </div>` : `
+    <div style="margin-top:16px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.15);border-radius:10px;padding:16px;text-align:center;color:rgba(255,255,255,.35);font-size:.82rem">
+      Upload tanda tangan atau stempel terlebih dahulu untuk mengaktifkan pratinjau posisi.
+    </div>`}
+  </div>
+
+  <!-- Berkas Aktif -->
+  <div class="glass" style="padding:22px;margin-top:20px">
+    <h3 style="font-size:1rem;font-weight:800;margin-bottom:6px;display:flex;align-items:center;gap:6px"><i data-lucide="file-check" style="width:16px;height:16px;color:#fbbf24"></i> Berkas yang Wajib Diunggah Koordinator</h3>
+    <div style="font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:18px">Aktifkan berkas yang harus diunggah oleh koordinator saat mendaftarkan peserta. Berkas yang tidak dicentang tidak akan muncul di form pendaftaran.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:18px">
+      ${allBerkas.map(b=>{
+        const isActive=activeBerkas.includes(b.key);
+        return `<label style="display:flex;align-items:center;gap:12px;padding:14px 16px;background:${isActive?'rgba(52,211,153,.12)':'rgba(255,255,255,.04)'};border:1.5px solid ${isActive?'rgba(52,211,153,.4)':'rgba(255,255,255,.12)'};border-radius:12px;cursor:pointer;transition:all .25s">
+          <input type="checkbox" id="berkas-${b.key}" ${isActive?'checked':''} style="width:18px;height:18px;cursor:pointer;accent-color:#10b981" onchange="previewBerkasState()"/>
+          <span style="font-size:1.5rem">${b.icon}</span>
+          <div>
+            <div style="font-weight:700;font-size:.88rem">${b.label}</div>
+            <div style="font-size:.7rem;color:${isActive?'#34d399':'rgba(255,255,255,.4)'};margin-top:2px">${isActive?'✅ Aktif':'⭕ Nonaktif'}</div>
+          </div>
+        </label>`;
+      }).join('')}
+    </div>
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <button class="btn btn-green" onclick="saveBerkasAktif()"><i data-lucide="save" style="width:16px;height:16px"></i> Simpan Pengaturan Berkas</button>
+      <button class="btn btn-ghost btn-sm" onclick="selectAllBerkas(true)">Pilih Semua</button>
+      <button class="btn btn-ghost btn-sm" onclick="selectAllBerkas(false)">Hapus Semua</button>
+    </div>
+  </div>
+
+  <!-- System Info -->
+  <div class="glass" style="padding:22px;margin-top:20px">
+    <h3 style="font-size:1rem;font-weight:800;margin-bottom:14px;display:flex;align-items:center;gap:6px"><i data-lucide="info" style="width:16px;height:16px;color:#93c5fd"></i> Informasi Sistem</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+      ${[['Total Sekolah',APP.schools.length],['Total Peserta',APP.students.length],['Peserta Tervalidasi',APP.students.filter(s=>s.verified==='true').length],['Menunggu Validasi',APP.students.filter(s=>s.verified!=='true').length]].map(([k,v])=>`
+        <div style="display:flex;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,.04);border-radius:10px">
+          <span style="color:rgba(255,255,255,.6);font-size:.83rem">${k}</span>
+          <span style="font-weight:800">${v}</span>
+        </div>`).join('')}
+    </div>
+  </div>`;
+  lucide.createIcons();
+}
+
+async function saveSettings(){
+  const ketua=document.getElementById('set-ketua')?.value?.trim()||'';
+  const nip=document.getElementById('set-nip')?.value?.trim()||'';
+  const year=document.getElementById('set-year')?.value?.trim()||'2026';
+  if(!ketua||!nip){ showToast('Nama dan NIP wajib!','error'); return; }
+  if(!/^\d{4}$/.test(year)||parseInt(year)<2020||parseInt(year)>2099){ showToast('Tahun tidak valid (2020-2099)!','error'); return; }
+  APP.config.ketua_panitia=ketua; APP.config.nip_ketua=nip; APP.config.event_year=year;
+  await elementSdk.setConfig({ketua_panitia:ketua,nip_ketua:nip,event_year:year});
+  showToast('Pengaturan disimpan dan tahun diperbarui! Refresh halaman jika perlu.','success');
+  refreshCurrentView();
+}
+async function saveInfo(){
+  const info=document.getElementById('set-info')?.value?.trim()||'';
+  APP.config.informasi_penting=info;
+  await elementSdk.setConfig({informasi_penting:info});
+  showToast('Pengumuman disimpan ✅');
+  renderHome(); renderAdmin();
+}
+function uploadLogo(){
+  const file=document.getElementById('logo-file')?.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async(e)=>{
+    APP.config.logo_url=e.target.result;
+    await elementSdk.setConfig({logo_url:e.target.result});
+    showToast('Logo berhasil diupload ✅');
+    adminTab('settings');
+  };
+  reader.readAsDataURL(file);
+}
+async function removeLogo(){
+  APP.config.logo_url='';
+  await elementSdk.setConfig({logo_url:''});
+  showToast('Logo dihapus','info');
+  adminTab('settings');
+}
+async function changeAdminPw(){
+  const old=document.getElementById('pw-old')?.value||'';
+  const nw=document.getElementById('pw-new')?.value||'';
+  const nw2=document.getElementById('pw-new2')?.value||'';
+  if(!old||!nw||!nw2){ showToast('Semua kolom wajib!','error'); return; }
+  if(old!==adminPassword){ showToast('Password lama salah!','error'); return; }
+  if(nw!==nw2){ showToast('Konfirmasi tidak cocok!','error'); return; }
+  if(nw.length<6){ showToast('Min 6 karakter!','error'); return; }
+  const existing=APP.allRecords.find(r=>r.type==='admin_config');
+  const r=existing?await dataSdk.update({...existing,admin_password:nw}):await dataSdk.create({type:'admin_config',admin_password:nw});
+  if(r.isOk){ adminPassword=nw; showToast('Password admin berhasil diubah ✅'); ['pw-old','pw-new','pw-new2'].forEach(id=>{ const el=document.getElementById(id); if(el)el.value=''; }); }
+  else showToast('Gagal ubah password!','error');
+}
+
+// ── Stempel & TTD ──
+function uploadTtd(){
+  const file=document.getElementById('ttd-file')?.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async(e)=>{
+    APP.config.ttd_url=e.target.result;
+    await elementSdk.setConfig({ttd_url:e.target.result});
+    showToast('Tanda tangan berhasil diupload ✅');
+    adminTab('settings');
+  };
+  reader.readAsDataURL(file);
+}
+async function removeTtd(){
+  APP.config.ttd_url='';
+  await elementSdk.setConfig({ttd_url:''});
+  showToast('Tanda tangan dihapus','info');
+  adminTab('settings');
+}
+function uploadStempel(){
+  const file=document.getElementById('stempel-file')?.files[0]; if(!file)return;
+  const reader=new FileReader();
+  reader.onload=async(e)=>{
+    APP.config.stempel_url=e.target.result;
+    await elementSdk.setConfig({stempel_url:e.target.result});
+    showToast('Stempel berhasil diupload ✅');
+    adminTab('settings');
+  };
+  reader.readAsDataURL(file);
+}
+async function removeStempel(){
+  APP.config.stempel_url='';
+  await elementSdk.setConfig({stempel_url:''});
+  showToast('Stempel dihapus','info');
+  adminTab('settings');
+}
+
+// ── Overlay preview: ukuran & opacity live update ──
+function updatePreviewOverlay(){
+  const ttdSize=document.getElementById('ttd-size');
+  const ttdOp=document.getElementById('ttd-opacity');
+  const stempelSize=document.getElementById('stempel-size');
+  const stempelOp=document.getElementById('stempel-opacity');
+  if(ttdSize){ document.getElementById('ttd-size-val').textContent=ttdSize.value+'px'; }
+  if(ttdOp){ document.getElementById('ttd-opacity-val').textContent=ttdOp.value+'%'; }
+  if(stempelSize){ document.getElementById('stempel-size-val').textContent=stempelSize.value+'px'; }
+  if(stempelOp){ document.getElementById('stempel-opacity-val').textContent=stempelOp.value+'%'; }
+  const ttdImg=document.getElementById('prev-ttd');
+  const stempelImg=document.getElementById('prev-stempel');
+  if(ttdImg&&ttdSize) ttdImg.style.width=ttdSize.value+'px';
+  if(ttdImg&&ttdOp) ttdImg.style.opacity=ttdOp.value/100;
+  if(stempelImg&&stempelSize) stempelImg.style.width=stempelSize.value+'px';
+  if(stempelImg&&stempelOp) stempelImg.style.opacity=stempelOp.value/100;
+}
+async function saveOverlaySettings(){
+  const ttdSize=parseInt(document.getElementById('ttd-size')?.value||120);
+  const ttdOp=parseFloat((document.getElementById('ttd-opacity')?.value||90)/100);
+  const stempelSize=parseInt(document.getElementById('stempel-size')?.value||110);
+  const stempelOp=parseFloat((document.getElementById('stempel-opacity')?.value||75)/100);
+  APP.config.ttd_size=ttdSize; APP.config.ttd_opacity=ttdOp;
+  APP.config.stempel_size=stempelSize; APP.config.stempel_opacity=stempelOp;
+  await elementSdk.setConfig({ttd_size:ttdSize,ttd_opacity:ttdOp,stempel_size:stempelSize,stempel_opacity:stempelOp});
+  showToast('Ukuran & opacity disimpan ✅');
+}
+
+// ── Drag & drop di pratinjau ──
+let _dragTarget=null,_dragStartX=0,_dragStartY=0,_dragImgX=0,_dragImgY=0;
+function startDrag(e,who){
+  e.preventDefault();
+  const img=document.getElementById('prev-'+who); if(!img)return;
+  _dragTarget=who;
+  _dragStartX=e.clientX; _dragStartY=e.clientY;
+  _dragImgX=parseInt(img.style.left)||0;
+  _dragImgY=parseInt(img.style.top)||0;
+  img.style.cursor='grabbing';
+  document.addEventListener('mousemove',onDragMove);
+  document.addEventListener('mouseup',onDragEnd);
+}
+function startDragTouch(e,who){
+  const t=e.touches[0];
+  const img=document.getElementById('prev-'+who); if(!img)return;
+  _dragTarget=who;
+  _dragStartX=t.clientX; _dragStartY=t.clientY;
+  _dragImgX=parseInt(img.style.left)||0;
+  _dragImgY=parseInt(img.style.top)||0;
+  document.addEventListener('touchmove',onDragMoveTouch,{passive:false});
+  document.addEventListener('touchend',onDragEndTouch);
+}
+function onDragMove(e){
+  if(!_dragTarget)return;
+  const img=document.getElementById('prev-'+_dragTarget); if(!img)return;
+  const area=document.getElementById('stamp-area'); if(!area)return;
+  const rect=area.getBoundingClientRect();
+  let nx=_dragImgX+(e.clientX-_dragStartX);
+  let ny=_dragImgY+(e.clientY-_dragStartY);
+  // clamp inside area
+  nx=Math.max(0,Math.min(nx,rect.width-20));
+  ny=Math.max(0,Math.min(ny,rect.height-20));
+  img.style.left=nx+'px'; img.style.top=ny+'px';
+}
+function onDragMoveTouch(e){
+  e.preventDefault();
+  const t=e.touches[0];
+  if(!_dragTarget)return;
+  const img=document.getElementById('prev-'+_dragTarget); if(!img)return;
+  const area=document.getElementById('stamp-area'); if(!area)return;
+  const rect=area.getBoundingClientRect();
+  let nx=_dragImgX+(t.clientX-_dragStartX);
+  let ny=_dragImgY+(t.clientY-_dragStartY);
+  nx=Math.max(0,Math.min(nx,rect.width-20));
+  ny=Math.max(0,Math.min(ny,rect.height-20));
+  img.style.left=nx+'px'; img.style.top=ny+'px';
+}
+function onDragEnd(){
+  if(_dragTarget){ const img=document.getElementById('prev-'+_dragTarget); if(img)img.style.cursor='grab'; }
+  _dragTarget=null;
+  document.removeEventListener('mousemove',onDragMove);
+  document.removeEventListener('mouseup',onDragEnd);
+}
+function onDragEndTouch(){
+  _dragTarget=null;
+  document.removeEventListener('touchmove',onDragMoveTouch);
+  document.removeEventListener('touchend',onDragEndTouch);
+}
+async function saveStampPosition(){
+  const ttdImg=document.getElementById('prev-ttd');
+  const stempelImg=document.getElementById('prev-stempel');
+  const patch={};
+  if(ttdImg){ patch.ttd_x=parseInt(ttdImg.style.left)||0; patch.ttd_y=parseInt(ttdImg.style.top)||0; APP.config.ttd_x=patch.ttd_x; APP.config.ttd_y=patch.ttd_y; }
+  if(stempelImg){ patch.stempel_x=parseInt(stempelImg.style.left)||0; patch.stempel_y=parseInt(stempelImg.style.top)||0; APP.config.stempel_x=patch.stempel_x; APP.config.stempel_y=patch.stempel_y; }
+  await elementSdk.setConfig(patch);
+  showToast('Posisi stempel & TTD disimpan ✅');
+}
+async function resetStampPosition(){
+  const patch={ttd_x:10,ttd_y:18,stempel_x:20,stempel_y:30};
+  Object.assign(APP.config,patch);
+  await elementSdk.setConfig(patch);
+  showToast('Posisi direset','info');
+  adminTab('settings');
+}
+
+// ── Berkas Aktif ──
+function previewBerkasState(){
+  const allBerkas=['photo','kk','akta','rapot','surat'];
+  const labelMap={photo:'Foto Peserta (2×3)',kk:'Kartu Keluarga (KK)',akta:'Akta Kelahiran',rapot:'Rapor Terakhir',surat:'Surat Aktif Sekolah'};
+  allBerkas.forEach(k=>{
+    const cb=document.getElementById('berkas-'+k);
+    const lbl=cb?.closest('label');
+    if(!lbl)return;
+    const statusEl=lbl.querySelector('div > div:last-child');
+    if(cb.checked){
+      lbl.style.background='rgba(52,211,153,.12)';
+      lbl.style.borderColor='rgba(52,211,153,.4)';
+      if(statusEl){statusEl.style.color='#34d399';statusEl.textContent='✅ Aktif';}
+    } else {
+      lbl.style.background='rgba(255,255,255,.04)';
+      lbl.style.borderColor='rgba(255,255,255,.12)';
+      if(statusEl){statusEl.style.color='rgba(255,255,255,.4)';statusEl.textContent='⭕ Nonaktif';}
+    }
+  });
+}
+function selectAllBerkas(state){
+  ['photo','kk','akta','rapot','surat'].forEach(k=>{
+    const cb=document.getElementById('berkas-'+k);
+    if(cb){cb.checked=state;}
+  });
+  previewBerkasState();
+}
+async function saveBerkasAktif(){
+  const allBerkas=['photo','kk','akta','rapot','surat'];
+  const active=allBerkas.filter(k=>{
+    const cb=document.getElementById('berkas-'+k);
+    return cb&&cb.checked;
+  });
+  const json=JSON.stringify(active);
+  APP.config.berkas_aktif=json;
+  await elementSdk.setConfig({berkas_aktif:json});
+  showToast('Pengaturan berkas disimpan ✅ ('+active.length+' berkas aktif)');
+}
+
+// ── Confirm dialogs ──
+function confirmValidate(id, name){
+  const html=`<div class="modal-overlay" id="cv-modal" onclick="if(event.target===this)closeModal('cv-modal')">
+    <div class="modal-box" style="max-width:380px;padding:28px;text-align:center">
+      <div style="width:60px;height:60px;background:linear-gradient(135deg,#10b981,#059669);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px">✅</div>
+      <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:8px;color:#34d399">Validasi Peserta?</h3>
+      <p style="color:rgba(255,255,255,.6);margin-bottom:22px">Validasi "<strong>${esc(name)}</strong>"?</p>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal('cv-modal')">Batal</button>
+        <button class="btn btn-green" style="flex:1;justify-content:center" onclick="doValidate('${id}');closeModal('cv-modal')">Validasi</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html); lucide.createIcons();
+}
+async function doValidate(id){
+  const s=APP.students.find(st=>st.__backendId===id); if(!s)return;
+  const r=await dataSdk.update({...s,verified:'true'});
+  if(r.isOk){ showToast('Peserta berhasil divalidasi ✅'); adminTab('students'); }
+  else showToast('Gagal validasi!','error');
+}
+function confirmDelete(type, id, name){
+  const isSekolah=type==='sekolah';
+  const html=`<div class="modal-overlay" id="cd-modal" onclick="if(event.target===this)closeModal('cd-modal')">
+    <div class="modal-box" style="max-width:380px;padding:28px;text-align:center">
+      <div style="width:60px;height:60px;background:linear-gradient(135deg,#ef4444,#dc2626);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px">⚠️</div>
+      <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:8px;color:#f87171">Hapus ${isSekolah?'Sekolah':'Peserta'}?</h3>
+      <p style="color:rgba(255,255,255,.6);margin-bottom:22px">Yakin hapus "<strong>${esc(name)}</strong>"?${isSekolah?' Semua peserta dari sekolah ini juga akan dihapus.':''}</p>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal('cd-modal')">Batal</button>
+        <button class="btn btn-red" style="flex:1;justify-content:center" onclick="doDelete('${type}','${id}');closeModal('cd-modal')">Hapus</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html); lucide.createIcons();
+}
+async function doDelete(type, id){
+  if(type==='sekolah'){
+    const school=APP.schools.find(s=>s.__backendId===id); if(!school)return;
+    for(const st of APP.students.filter(s=>s.coordinator_npsn===school.npsn)) await dataSdk.delete(st);
+    const r=await dataSdk.delete(school);
+    if(r.isOk){ showToast('Sekolah berhasil dihapus ✅'); adminTab('schools'); }
+    else showToast('Gagal hapus!','error');
+  } else {
+    const st=APP.students.find(s=>s.__backendId===id); if(!st)return;
+    const r=await dataSdk.delete(st);
+    if(r.isOk){ showToast('Peserta berhasil dihapus ✅'); adminTab('students'); }
+    else showToast('Gagal hapus!','error');
+  }
+}
+function confirmReset(id, name){
+  const html=`<div class="modal-overlay" id="cr-modal" onclick="if(event.target===this)closeModal('cr-modal')">
+    <div class="modal-box" style="max-width:380px;padding:28px;text-align:center">
+      <div style="width:60px;height:60px;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 14px">🔑</div>
+      <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:8px;color:#fbbf24">Reset Password?</h3>
+      <p style="color:rgba(255,255,255,.6);margin-bottom:22px">Reset password "<strong>${esc(name)}</strong>" ke default <strong>123456</strong>?</p>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-ghost" style="flex:1;justify-content:center" onclick="closeModal('cr-modal')">Batal</button>
+        <button class="btn btn-yellow" style="flex:1;justify-content:center" onclick="doReset2('${id}');closeModal('cr-modal')">Reset</button>
+      </div>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML('beforeend',html); lucide.createIcons();
+}
+async function doReset2(id){
+  const school=APP.schools.find(s=>s.__backendId===id); if(!school)return;
+  const r=await dataSdk.update({...school,password_hash:'123456'});
+  if(r.isOk){ showToast('Password direset ke 123456','info'); adminTab('schools'); }
+  else showToast('Gagal reset!','error');
+}
+
+// ── Download Excel ──
+function downloadExcel(){
+  if(typeof XLSX==='undefined'){ showToast('Library Excel belum dimuat, coba lagi','warning'); return; }
+  const wb=XLSX.utils.book_new();
+  // Sheet 1: Rekap
+  const byCategory={};
+  Object.keys(SPORTS).forEach(s=>{ byCategory[s]={putra:0,putri:0,verified:0}; });
+  APP.students.forEach(s=>{
+    if(byCategory[s.sport]){
+      if(s.sport_gender==='Putra')byCategory[s.sport].putra++;
+      else byCategory[s.sport].putri++;
+      if(s.verified==='true')byCategory[s.sport].verified++;
+    }
+  });
+  const rekapData=[
+    [`REKAPITULASI PESERTA O2SN KECAMATAN CIGOMBONG TAHUN ${APP.config.event_year||'2026'}`],
+    [`Tanggal Cetak: ${new Date().toLocaleDateString('id-ID')}`],[],
+    ['Cabang Olahraga','Putra','Putri','Total','Terverifikasi','%'],
+    ...Object.entries(byCategory).map(([name,d])=>{
+      const total=d.putra+d.putri;
+      return [name,d.putra,d.putri,total,d.verified,total>0?`${Math.round(d.verified/total*100)}%`:'0%'];
+    }),
+    ['TOTAL',Object.values(byCategory).reduce((a,b)=>a+b.putra,0),Object.values(byCategory).reduce((a,b)=>a+b.putri,0),APP.students.length,APP.students.filter(s=>s.verified==='true').length,APP.students.length>0?`${Math.round(APP.students.filter(s=>s.verified==='true').length/APP.students.length*100)}%`:'0%']
+  ];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(rekapData), 'Rekapitulasi');
+  // Sheet 2: Detail
+  const detailData=[
+    ['No','Nama Peserta','NISN','Sekolah','Cabang Olahraga','Kategori','Kelas','Tempat Lahir','Tanggal Lahir','Jenis Kelamin','Agama','Koordinator','No HP Koordinator','Status Verifikasi','Tgl Daftar'],
+    ...APP.students.map((s,i)=>[i+1,s.student_name,s.nisn||'-',s.school_name,s.sport,s.sport_gender,s.grade,s.birth_place,fmtDateShort(s.birth_date),s.gender,s.religion||'-',s.teacher_name,s.teacher_phone,s.verified==='true'?'Terverifikasi':'Menunggu',fmtDateShort(s.reg_date)])
+  ];
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(detailData), 'Data Peserta');
+  // Sheet 3 per cabang
+  Object.entries(SPORTS).forEach(([sport,s])=>{
+    const sportStudents=APP.students.filter(st=>st.sport===sport);
+    if(sportStudents.length===0)return;
+    const sheetData=[
+      [`CABANG: ${sport}`],[],
+      ['No','Nama','Sekolah','Kategori','Kelas','Status'],
+      ...sportStudents.map((st,i)=>[i+1,st.student_name,st.school_name,st.sport_gender,st.grade,st.verified==='true'?'Terverifikasi':'Menunggu'])
+    ];
+    XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(sheetData), sport.substring(0,28));
+  });
+  XLSX.writeFile(wb, `O2SN-Cigombong-${APP.config.event_year||'2026'}.xlsx`);
+  showToast('File Excel berhasil diunduh ✅');
+}
+
+// ═══════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════
+renderHome();
+</script>
+</body>
+</html>
